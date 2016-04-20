@@ -1,9 +1,19 @@
-# must set fpte which is the number of periods before the election that the
-# forecast is being made on (i.e. pte >= 3)
-
 # DATA
 dlmNatDat <- function(x, fpte){
-  # means by window and poll
+  # Creates data for national DLM model, Aggregates all polls for a pollster in 
+  # a given period.
+  #
+  # Args:
+  #   x: Generic ballot dataframe containing all national polls prior to election day.
+  #      Must include columns for sample size and democratic share of the 2-party vote.
+  #   fpte: "Forecast periods to election", the number of periods before the election
+  #          that the forecast will be made
+  #
+  # Returns:
+  #   List containing matrices y and v. y is a matrix with rows equal to the number of periods
+  #   prior to the election and columns containing the democratic share of the two party vote 
+  #   for each pollster (can be missing). v is the a matrix of the same size containing the 
+  #   variance of the democratic share of the two party vote.
   xmean <- x[,.(dv = weighted.mean(dv, sample_size), sample_size = sum(sample_size)),
              by = c("poll", "pte")] 
   xmean <- xmean[pte >= fpte]
@@ -27,8 +37,25 @@ dlmNatDat <- function(x, fpte){
 }
 
 # GIBBS SAMPLER
-gibbsNat <- function(fpte, n, finpoll_mean, finpoll_sd){
-  dlmdat <- dlmNatDat(gb, fpte = fpte)
+gibbsNat <- function(x, fpte, n, finpoll_mean, finpoll_sd){
+  # Gibbs sampler for national DLM model
+  #
+  # Args:
+  #   x: Generic ballot dataframe containing all national polls prior to election day.
+  #      Must include columns for sample size and democratic share of the 2-party vote.
+  #   fpte: "Forecast periods to election", the number of periods before the election
+  #          that the forecast will be made
+  #   n: Number of simulations
+  #   finpoll_mean: Mean of final poll from regression-based prior
+  #   finpoll_sd: Standard deviation of final poll from regression-based prior
+  #
+  # Returns:
+  #   List containing parameters theta, psi, and lambda. Theta is a matrix with rows equal
+  #   to the number of time periods before the election plus one and columns for samples
+  #   of national opinion at each date from the posterior density. psi is a vector of
+  #   the posterior density of the variance of the state equation. lambda is a matrix of the 
+  #   posterior density of polling bias (one column for each pollster)
+  dlmdat <- dlmNatDat(x, fpte = fpte)
   list2env(dlmdat, globalenv())
   y <- rbind(y, NA)
   y <- cbind(y, c(rep(NA, nrow(y) -1), finpoll_mean * 100))

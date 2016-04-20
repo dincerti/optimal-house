@@ -12,7 +12,7 @@ adv2010 <- mean(c(predsummary[year == 2010, y], uncontested[year == 2010, y]))
 if (file.exists("output/dlmnatPosterior.RData") == FALSE) {
   dlmnat.sims <- list()
   for (i in seq(1, 4)){
-    dlmnat.sims[[i]] <- gibbsNat(fpte = i, n = 6000, 
+    dlmnat.sims[[i]] <- gibbsNat(x = gb, fpte = i, n = 6000, 
                                  finpoll_mean = afdv2010.mean,
                                  finpoll_sd = afdv2010.sd)  
   }
@@ -25,7 +25,7 @@ if (file.exists("output/dlmnatPosterior.RData") == FALSE) {
 if (file.exists("output/dlmnatnpPosterior.RData") == FALSE) {
   dlmnatnp.sims <- list()
   for (i in seq(1, 4)){
-    dlmnatnp.sims[[i]] <- gibbsNat(fpte = i, n = 6000, 
+    dlmnatnp.sims[[i]] <- gibbsNat(x = gb, fpte = i, n = 6000, 
                                    finpoll_mean = NA,
                                    finpoll_sd = NA)  
   }

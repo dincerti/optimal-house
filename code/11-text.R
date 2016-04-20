@@ -1,4 +1,3 @@
-
 # STATISTICS CITED WITHIN TEXT OF PAPER ----------------------------------------
 # statistics
 rm(list = ls(pattern = "txt"))
