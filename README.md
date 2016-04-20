@@ -1,7 +1,7 @@
 # optimal-house
 This repository contains the code for my paper [The Optimal Allocation of Campaign Funds
 in House Elections](http://devinincerti.com/papers/optimal_house.pdf). To run the analysis for the entire paper, download
-the repository as a zip file or clone the repository to your local machine. Then run the script `main.R` 
+the repository as a zip folder or clone the repository to your local machine. Then run the script `main.R` 
 and be sure to install the required packages and change the working directory. However, be forewarned
 that it will take over 15 hours because four separate Bayesian models must be implemented. 
 
