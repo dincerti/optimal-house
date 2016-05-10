@@ -1,6 +1,5 @@
 # setup
 rm(list=ls()) 
-setwd("C:/Users/Devin/Dropbox/Projects/Optimal Resources House Elections")
 packages <- c("ggplot2", "foreign", "plyr", "lmtest", "reshape2", "data.table", 
               "lme4", "rstan", "MASS", "xtable", "scales", "arm", "dplyr",
               "RMySQL", "sandwich", "plm", "dlm", "coda", "MCMCpack", "gridExtra",
