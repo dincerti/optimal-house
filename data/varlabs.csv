@@ -1,0 +1,15 @@
+var,lab,labshort
+l_houdvimp,Dem. share of district vote in last election,District vote in last election
+c_l_presdv,Relative Dem. share of presidential vote in last election,Pres. Vote in last election
+houinc,Incumbent,Incumbent
+houcontrol,Party control,Party Control
+dwnom1,1st dimension DW-nominate score ,DW-nominate
+rdwnom1,Relative 1st dimension DW-nominate score ,Dw-nominate
+absrdwnom1Xhouinc,$\lvert$ Relative DW-nominate $\rvert$ $\times$ incumbent,Abs(Dw-nominate) X inc
+rdwnom1Xi_open,Relative DW-nominate $\times$ open seat,DW-nominate X open
+fresh,Freshman incumbent,Freshman 
+i_po,Previous office holder,Previous office
+prescontrolXaugapr,August presidential net approval rating,Presidential approval
+gbdv_aug,August generic ballot,Generic ballot
+midterm,Midterm election,Midterm
+prescontrolXq2gdp,Second quarter GDP growth,GDP growth
