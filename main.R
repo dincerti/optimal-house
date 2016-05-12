@@ -22,10 +22,10 @@ source("code/5-do_hlm.R")
 source("code/6-do_dlmsetup.R")
 source("code/7-do_dlmnat.R")
 source("code/8a-do_dlmcd_load.R")
-if (!file.exists("output/dlmPosterior.Rdata")){
+if (!file.exists("output/dlmPosterior.rds")){
   source("code/8b-do_dlmcd_run.R")
 }
-if (!file.exists("output/dlmnpPosterior.Rdata")){
+if (!file.exists("output/dlmnpPosterior.rds")){
   source("code/8c-do_dlmcd_nprun.R")
 }
 source("code/8d-do_dlmcd_results.R")

@@ -1,7 +1,7 @@
 # RESULTS FOR DLM GIBBS SAMPLER  ----------------------------------------------
 # loading
-load("output/dlmPosterior.Rdata")
-load("output/dlmnpPosterior.Rdata")
+dlm.sims <- readRDS("output/dlmPosterior.rds")
+dlmnp.sims <- readRDS("output/dlmnpPosterior.rds")
 
 # diagnostic plots
 if (!file.exists("figs/dlm_diagnostics1.pdf")){

@@ -113,8 +113,7 @@
 
 
 % file paths and definitions
-\def \Pathone {../../Dissertation/Essay1/}
-\input{\Pathone output/ch1txtstats.txt}
+\input{../output/ch1txtstats.txt}
 \makeatletter
 \newcommand*\ExpandableInput[1]{\@@input#1 }
 \makeatother
@@ -382,7 +381,7 @@ Summary statistics for these variables are presented in~\autoref{table:Summary S
 \hline
 \multicolumn{1}{c}{Variable} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Median} & \multicolumn{1}{c}{Max}   \\
 \hline
-\ExpandableInput{\Pathone tables/sumstats.txt}
+\ExpandableInput{../tables/sumstats.txt}
 \hline
 \hline
 \end{tabular*}
@@ -399,7 +398,7 @@ Although campaign fund-raising is a year-round endeavor for political candidates
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{\Pathone /figs/monthly_spending.pdf}
+\includegraphics{../figs/monthly_spending.pdf}
 \vspace{.5cm}
 \caption{Average Daily Expenditures by PACs on Candidates by Month, 2000 - 2010}
 \label{fig:Average Daily Expenditures by PACs on Candidates by Month, 2000 - 2010}
@@ -430,7 +429,7 @@ Post-August spending for these groups and other non-aligned PACs are shown in~\a
 \cmidrule{2-3} \cmidrule{4-5}
 \multicolumn{1}{c}{} & \multicolumn{1}{c}{\$} & \multicolumn{1}{c}{Fraction of total}& \multicolumn{1}{c}{\$}& \multicolumn{1}{c}{Fraction of total}  \\
 \hline
-\ExpandableInput{\Pathone tables/partyexp.txt}
+\ExpandableInput{../tables/partyexp.txt}
 \hline
 \hline
 \end{tabular*}
@@ -453,7 +452,7 @@ Panel (b) of the figure shows the cumulative number of polls during each day of 
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{\Pathone figs/polldescstats.pdf}
+\includegraphics{../figs/polldescstats.pdf}
 \vspace{.5cm}
 \caption{Summary Plots for District Polls}
 \label{fig:Summary Plots for District Polls}
@@ -478,7 +477,7 @@ Posterior means and quantiles for the parameters using data from 1980 - 2008 (wh
 \cmidrule{3-5}
 \multicolumn{1}{c}{Variable} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{2.5\%}& \multicolumn{1}{c}{Median}& \multicolumn{1}{c}{97.5\%}  \\
 \hline
-\ExpandableInput{\Pathone tables/postsummary.txt}
+\ExpandableInput{../tables/postsummary.txt}
 \hline
 \hline
 \end{tabular*}
@@ -497,7 +496,7 @@ There is also evidence that the decomposition of the error into a district compo
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{\Pathone figs/seats_hist.pdf}
+\includegraphics{../figs/seats_hist.pdf}
 \vspace{.5cm}
 \caption{Forecasts of the Number of the Percentage of Democratic Seats}
 \label{fig:Forecasts of the Number of the Percentage of Democratic Seats}
@@ -529,7 +528,7 @@ Estimates of the square root of the variance parameters, $\sigma_\mu$ and $\sigm
 \cmidrule{2-4} \cmidrule{5-7}
 \multicolumn{1}{c}{Months to election} & \multicolumn{1}{c}{2.5\%}& \multicolumn{1}{c}{Median}& \multicolumn{1}{c}{97.5\%}  & \multicolumn{1}{c}{2.5\%}& \multicolumn{1}{c}{Median}& \multicolumn{1}{c}{97.5\%}  \\
 \hline
-\ExpandableInput{\Pathone tables/postpsi.txt}
+\ExpandableInput{../tables/postpsi.txt}
 \hline
 \hline
 \end{tabular*}
@@ -542,7 +541,7 @@ Summaries of model's forecasts are are presented in figures~\ref{fig:Forecasts o
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{\Pathone figs/dlmnatpred.pdf}
+\includegraphics{../figs/dlmnatpred.pdf}
 \vspace{.5cm}
 \caption{Forecasts of the 2010 National Vote by Date}
 \label{fig:Forecasts of the 2010 National Vote by Date}
@@ -556,7 +555,7 @@ Summaries of model's forecasts are are presented in figures~\ref{fig:Forecasts o
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{\Pathone figs/dlmseats.pdf}
+\includegraphics{../figs/dlmseats.pdf}
 \vspace{.5cm}
 \caption{Forecasts of the Democratic Fraction of Seats in the 2010 Election}
 \label{fig:Forecasts of the Democratic Fraction of Seats in the 2010 Election}
@@ -570,7 +569,7 @@ It is tempting to use this evidence to discount the regression based prior but i
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{\Pathone figs/forecast_eval_2010.pdf}
+\includegraphics{../figs/forecast_eval_2010.pdf}
 \vspace{.5cm}
 \caption{Evaluations of 2010 Election Forecasts}
 \label{fig:Evaluations of 2010 Election Forecasts}
@@ -599,7 +598,7 @@ As discussed in~\autoref{sec: equilibrium}, party goals can have an important im
 The strategies are more intricate when the parties maximize the probability of winning a majority of seats. In this case, the parties should spend the most resources on decisive swing districts, or districts that are most likely to be close when winning that district will cause one party to win one more seat than the other party. This, in turn, implies that the trailing party should spend more resources in districts that they are losing in an effort to make the election more unpredictable. These incentives are best illustrated in the 2008 election when the Democratic party was expected to win a large majority of seats.\footnote{Forecasts from the hierarchical model predict that the Republicans would have won, on average, $\predseats2008$ of the necessary 218 seats for a majority; in reality, they won 178 seats.} As shown in the plot, the Republican's optimal strategy (assuming they were only concerned with winning a majority of seats), was to to spend the most resources in districts with a predicted Democratic vote share over $0.5$. Since the number of seats won by both parties would have only have been close if the national swing shifted drastically in the Republican's favor, $Q_i$ is maximized for districts with a vote share close to $0.6$. Interestingly, the cost of spending on districts that Republicans were expected to barely win has such an adverse effect on the variance of the election that $Q_i$ is actually negative in these districts.
  
 \begin{figure}[!htb]
-\includegraphics{\Pathone figs/qplot.pdf}
+\includegraphics{../figs/qplot.pdf}
 \vspace{.5cm}
 \caption{$Q_i$ versus the mean forecast of the Democratic vote in the 2008 election}
 \label{fig: $Q_i$ versus the mean forecast of the Democratic vote in the 2008 election}
@@ -624,7 +623,7 @@ The plot highlights two primary aspects of the data that are worth discussing. F
 Second, the correlations are not very sensitive to party goals except in 2008. In~\autoref{sec: calculating Q} I showed that assumptions about party goals impacted the values of $Q_i$ greatly in 2008 because the Democrats were expected to win the House by almost 80 seats. The 2008 election therefore provides a natural experiment that can be used to identify the goals that the parties actually have. The huge dip in the correlation between spending and $Q_i^{maj}$ but not between spending and  $Q_i^{seats}$ is telling. I view this as strong evidence that parties maximize the expected number of seats rather than the probability of winning a majority of seats. Of course, another possibility is that parties attempt to maximize seats when the election is lopsided but try to win a majority of seats when the election is closer. This is plausible, but there is not enough evidence to support it because differences in correlations between the two goals are too small in election years other than 2008.\footnote{The correlation between actual spending and $Q_i^{maj}$ is higher (by about $0.1$) than the correlation between spending and $Q_i^{seats}$ for all groups in 2000 and 2006. But in 2004 (when the predicted seat share is nearly identical to 2006) and 2010, the correlation with spending is actually slightly higher for $Q_i^{seats}$ than $Q_i^{maj}$.}
 
 \begin{figure}[!htb]
-\includegraphics{\Pathone figs/corbytype.pdf}
+\includegraphics{../figs/corbytype.pdf}
 \vspace{.5cm}
 \caption{Correlation Between $\mathbf{Q_i}$ and Spending, by Contributor Type}
 \label{fig:Correlation Between Q and Spending, by Contributor Type}
@@ -641,7 +640,7 @@ The finding that campaign contributions are higher in close elections is a commo
 \autoref{fig:Correlation Between Measures of Electoral Competitiveness and Campaign Spending} takes a look at this question by plotting the correlation between various measure of electoral competitiveness. Based on~\autoref{fig:Correlation Between Q and Spending, by Contributor Type}, I use $Q_i^{seats}$ as the measure of electoral competitiveness derived from the probabilistic voting model. The electoral margin is measured as the absolute value of the Democratic vote share less 0.5.\footnote{Uncontested seats are treated as having an electoral margin equal to $0.5$ to maintain consistency with the probabilistic voting model.} $Q_i^{seats}$ fits the data considerably better than the electoral margin for all five elections in the sample. There is also little difference between calculating electoral margin with the actual election outcome or a forecasted value, implying that $Q_i^{seats}$ accounts for observed spending better because it depends on forecast uncertainty and that the normality assumptions on the error terms are reasonable. 
 
 \begin{figure}[!htb]
-\includegraphics{\Pathone figs/corbymeasure.pdf}
+\includegraphics{../figs/corbymeasure.pdf}
 \vspace{.5cm}
 \caption{Correlation Between Measures of Electoral Competitiveness and Campaign Spending}
 \label{fig:Correlation Between Measures of Electoral Competitiveness and Campaign Spending}
@@ -656,7 +655,7 @@ The correlations presented thus far use the hierarchical model to calculate $Q_i
 In early September, or two months prior to the election, forecasts are only available from the hierarchical model so I assign all the models forecast values equal to the forecast from the hierarchical model. The figure shows that the $Q_i^{seats}$ calculated using the DLM's match actual spending better than the $Q_i^{seats}$ calculated using the hierarchical model, although the $Q_i^{seats}$ from the hierarchical model are still pretty accurate. The correlations between the $Q_i^{seats}$ estimated using the hierarchical model and spending decrease in a linear fashion over time while the correlations based on the DLM forecasts reach a peak of around 0.8 one month before the election.  There is little difference between the performance of the ``prior'' and ``no prior'' DLM's, although the correlations between the ``no prior'' DLM and spending are somewhat more variable. Overall, this figure suggests that campaign donors use polls to evaluate the competitiveness of a district and update these beliefs when new polls become available.
 
 \begin{figure}[!htb]
-\includegraphics{\Pathone figs/cormodels.pdf}
+\includegraphics{../figs/cormodels.pdf}
 \vspace{.5cm}
 \caption{Correlation Between $\mathbf{Q_i}$ and PAC Spending by Date and Model, 2010 House Election}
 \label{fig:Correlation Between Q and PAC Spending by Date and Model, 2010 House Election}
@@ -683,11 +682,11 @@ The first column reports an estimate of a simple linear regression (with an inte
 \multicolumn{1}{c}{} & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)}& \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)}& \multicolumn{1}{c}{(5)} \\
 \hline
 \multicolumn{1}{l}{\emph{Panel A. Democrats}} & \multicolumn{5}{c}{}\\
-\ExpandableInput{\Pathone tables/regexp_dem.txt}
+\ExpandableInput{../tables/regexp_dem.txt}
 \multicolumn{1}{l}{District fixed effects?}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{Yes} \\
 \hline
 \multicolumn{1}{l}{\emph{Panel B. Republicans}} & \multicolumn{5}{c}{}\\
-\ExpandableInput{\Pathone tables/regexp_rep.txt}
+\ExpandableInput{../tables/regexp_rep.txt}
 \multicolumn{1}{l}{District fixed effects?}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{Yes} \\
 \hline
 \hline
@@ -719,7 +718,7 @@ While spending in a district may be largely explained by equilibrium spending, t
 \hline
 \multicolumn{1}{c}{Variable} & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)}& \multicolumn{1}{c}{(3)} \\
 \hline
-\ExpandableInput{\Pathone tables/regexp_fin.txt}
+\ExpandableInput{../tables/regexp_fin.txt}
 \multicolumn{1}{l}{District fixed effects?}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{No}& \multicolumn{1}{c}{Yes} \\
 \hline
 \hline
@@ -872,7 +871,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 
 \begin{landscape}
 \begin{figure}[!ht]
-\includegraphics{\Pathone figs/postden.pdf}
+\includegraphics{../figs/postden.pdf}
 \vspace{.5cm}
 \caption{Posterior Densities for Parameters in Forecasting Model}
 \label{fig:Posterior Densities for Parameters in Forecasting Model}
@@ -885,7 +884,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 
 \iffalse
 \begin{figure}[!htb]
-\includegraphics{\Pathone figs/pva.pdf}
+\includegraphics{../figs/pva.pdf}
 \vspace{.5cm}
 \caption{In-Sample Predicted Versus Actual Plot, House Elections 1980 - 2008}
 \label{fig:In-Sample Predicted Versus Actual Plot, House Elections 1980 - 2008}
@@ -897,7 +896,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 \fi
 
 \begin{figure}[!htb]
-\includegraphics{\Pathone figs/pvaoos.pdf}
+\includegraphics{../figs/pvaoos.pdf}
 \vspace{.5cm}
 \caption{Out-of-Sample Predicted Versus Actual Plot, House Elections 1990 - 2010}
 \label{fig:Out-of-Sample Predicted Versus Actual Plot, House Elections 1990 - 2010}
@@ -909,7 +908,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 
 \begin{figure}[!htb]
 \centering
-\includegraphics{\Pathone figs/natopinion1.pdf}
+\includegraphics{../figs/natopinion1.pdf}
 \vspace{.5cm}
 \caption{Estimates of National Opinion During the Election Campaign}
 \label{fig:Estimates of National Opinion During the Election Campaign}
@@ -921,7 +920,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics{\Pathone figs/houeffects.pdf}
+\includegraphics{../figs/houeffects.pdf}
 \vspace{.5cm}
 \caption{Estimates of House Effects}
 \label{fig:Estimates of House Effects}
@@ -934,7 +933,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics{\Pathone figs/rmsfe2010_bypollfreq.pdf}
+\includegraphics{../figs/rmsfe2010_bypollfreq.pdf}
 \vspace{.5cm}
 \caption{RMSFE By Polling Availability and Forecast Date}
 \label{fig:RMSFE By Polling Availability and Forecast Date}
@@ -947,7 +946,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics{\Pathone figs/mpe2010_bypollfreq.pdf}
+\includegraphics{../figs/mpe2010_bypollfreq.pdf}
 \vspace{.5cm}
 \caption{MPE By Polling Availability and Forecast Date}
 \label{fig:MPE By Polling Availability and Forecast Date}
@@ -960,7 +959,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics{\Pathone figs/brier2010_bypollfreq.pdf}
+\includegraphics{../figs/brier2010_bypollfreq.pdf}
 \vspace{.5cm}
 \caption{Brier Score By Polling Availability and Forecast Date}
 \label{fig:Brier Score By Polling Availability and Forecast Date}
@@ -972,7 +971,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 \end{figure}
 
 \begin{figure}[!htb]
-\includegraphics{\Pathone figs/corbyparty.pdf}
+\includegraphics{../figs/corbyparty.pdf}
 \vspace{.5cm}
 \caption{Correlation Between Q and PAC Spending, by Party}
 \label{fig:Correlation Between Q and PAC Spending, by Party}
@@ -1004,6 +1003,6 @@ Polls were scraped from the website \url{http://www.realclearpolitics.com/epolls
 \end{appendices}
 
 \pdfbookmark[1]{References}{References}
-\bibliography{C:/Users/Devin/Dropbox/Documents/bibliography}
+\bibliography{bibliography}
 
 \end{document} 

@@ -2,4 +2,4 @@
 # packages doSNOW and parallel are needed for running gibbs sampler
 # in parallel
 dlm.sims <- parallelGibbs(prior = TRUE, nsims = 6000)
-save(dlm.sims, file = "output/dlmPosterior.Rdata")  
+saveRDS(dlm.sims, file = "output/dlmPosterior.rds")  
