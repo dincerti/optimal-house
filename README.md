@@ -20,6 +20,6 @@ The scripts containing these models are `5-hlm.R`, `7-do_dlmnat`, `8b-do_dlmcd_r
 `8c-do_dlmcd_nprun` (`7-do_dlmnat` is much faster than the others). Your machine must have at least four cores because 
 the Bayesian models in `8b` and `8c` are run in parallel.
 
-Scripts `1-load.R` and `2-clean.R` (sourced within `main.R') create the Rdata file `output/ohdata.Rdata`, which is used for the analysis, 
+Scripts `1-load.R` and `2-clean.R` (sourced within `main.R`) create the Rdata file `output/ohdata.Rdata`, which is used for the analysis, 
 by loading/cleaning data from a MySQL database. 
 
