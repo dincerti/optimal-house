@@ -7,7 +7,7 @@ first clone the directory,
 git clone https://github.com/dincerti/optimal-house.git
 
 ```
-Then, from the command line (terminal) run the script `main.R'.
+Then, from the command line (terminal) run the script `main.R`.
 
 ````
 Rscript main.R
