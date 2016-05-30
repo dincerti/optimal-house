@@ -53,7 +53,7 @@ p.dlmnatpred <- ggplot(natpred2010, aes(x = month, y = median)) +
   geom_line(data = pollavg, aes(x = month, y = pollavg), linetype = "dotted", col = "gray28") +
   geom_hline(yintercept = afdv2010.mean, linetype = "dotted", col = "gray28") +
   geom_hline(yintercept = adv2010, linetype = "dotted", col = "gray28") +
-  annotate("text", x = 0.75, y = 0.513, label = "Regression forecast", size = 3) +
+  annotate("text", x = 0.75, y = 0.52, label = "Regression forecast", size = 3) +
   annotate("text", x = 0.75, y = 0.49, label = "Actual vote", size = 3) +
   annotate("text", x = 0.75, y = 0.458, label = "Poll average", size = 3)+
   scale_x_reverse() 

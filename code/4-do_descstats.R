@@ -46,9 +46,10 @@ exp.rep <- t(cd[year >= 2000, lapply(.SD, mean, na.rm = TRUE),
                 .SDcols = c("expR_reporg", "expR_repcon", "expR_repally","expR_other")])
 exp.party <- data.frame(dem_sum = exp.dem, dem_frac =  exp.dem/sum(exp.dem),
                         rep_sum = exp.rep, rep_frac = exp.rep/sum(exp.rep))
-exp.party <- round(exp.party, 3)
-exp.party[, 1] <- prettyNum(exp.party[, 1], big.mark=",", scientific = F)
-exp.party[, 3] <- prettyNum(exp.party[, 3], big.mark=",", scientific = F)
+exp.party[, 1] <- formatC(exp.party[, 1], big.mark=",", format = "f", digits = 2)
+exp.party[, 2] <- formatC(exp.party[, 2], format = "f", digits = 2)
+exp.party[, 3] <- formatC(exp.party[, 3], big.mark=",", format = "f", digits = 2)
+exp.party[, 4] <- formatC(exp.party[, 4], format = "f", digits = 2)
 rownames(exp.party) <- c("National party committees", "Party-connected committees", "Allied PACs",
                          "Other PACs")
 print(xtable(exp.party), 
