@@ -1,3 +1,5 @@
+load("data/ohdata.RData")
+
 # (1) NATIONWIDE VARIABLES  ---------------------------------------------------
 # election year
 elyear[, eldate := as.Date(eldate, format = "%m/%d/%Y")]

@@ -11,26 +11,24 @@ source("code/dlm.R")
 set.seed(100)
 
 # code
-if (!file.exists("output/ohdata.RData")){
-  for(con in dbListConnections(MySQL())) dbDisconnect(con)
-  source("code/1-load.R")
-  source("code/2-clean.R")  
+if (!file.exists("output/ohdata-clean.RData")){
+  source("code/01-clean.R")  
 }
-source("code/3-do_setup.R")
-source("code/4-do_descstats.R")
-source("code/5-do_hlm.R")
-source("code/6-do_dlmsetup.R")
-source("code/7-do_dlmnat.R")
-source("code/8a-do_dlmcd_load.R")
+source("code/02-do_setup.R")
+source("code/03-do_descstats.R")
+source("code/04-do_hlm.R")
+source("code/05-do_dlmsetup.R")
+source("code/06-do_dlmnat.R")
+source("code/07a-do_dlmcd_load.R")
 if (!file.exists("output/dlmPosterior.rds")){
-  source("code/8b-do_dlmcd_run.R")
+  source("code/07b-do_dlmcd_run.R")
 }
 if (!file.exists("output/dlmnpPosterior.rds")){
-  source("code/8c-do_dlmcd_nprun.R")
+  source("code/07c-do_dlmcd_nprun.R")
 }
-source("code/8d-do_dlmcd_results.R")
-source("code/9-do_forecasts.R")
-source("code/10-do_Q.R")
-source("code/11-text.R")
+source("code/07d-do_dlmcd_results.R")
+source("code/08-do_forecasts.R")
+source("code/09-do_Q.R")
+source("code/10-text.R")
 
 

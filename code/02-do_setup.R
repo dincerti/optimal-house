@@ -1,6 +1,6 @@
 # SET UP ----------------------------------------------------------------------
 theme_set(theme_bw())
-load("output/ohdata.RData")
+load("output/ohdata-clean.RData")
 varlabs <- fread("data/varlabs.csv")
 yvar <- "houdv"
 xvars <- c("l_houdvimp", "c_l_presdv", "houinc", "rdwnom1", 
