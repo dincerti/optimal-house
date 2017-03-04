@@ -144,40 +144,6 @@
 \clearpage
 \doublespacing
 
-\section{Optimal Campaign Spending: Additional Details}
-\subsection{Winning a majority of seats}
-A second possibility is that parties maximize the probability of winning a majority of seats. For party $R$ this is,
-\begin{align}
-P^R(\Delta \mu) = \int \rm{Pr}\left(\sum_{i=1}^{435} s_i > 218 \right) h(\delta)d \delta.
-\end{align}
-
-This function is more difficult to maximize than equation~\ref{eqn: expected number of seats} because it is not additively separable across districts; that is, party $R$'s optimal strategy in one district depends on its strategy in all other districts. In order to solve the problem analytically, \citet{stromberg2008electoral} suggests calculating the approximate probability of winning instead. Since the national and district shocks are independent, this can be done by using the Lyapunov Central Limit Theorem, which does not require random variables to be identically distributed. Using this approximation, the number of seats won by party $R$, $S=\sum_{i=1}^{435} s_i$, is asymptotically normally distributed with mean $\mu_S$ and variance $\sigma_S$. The approximate probability of party $R$ winning the election is then,
-\begin{align}
-P^R(\Delta \mu) = \int 1 - \Phi\left(\frac{218 - \mu_S(\Delta u, \delta)}{\sigma_S(\Delta u, \delta)}\right) h(\delta)d\delta,
-\end{align}
-where $\Phi(\cdot)$ is the standard normal cumulative density function.
-
-It follows that if $s_i$ is an indicator variable equal to 1 if party $R$ wins a district and $0$ if party $D$ wins, then $s_i = 1$ with probability $G_i(\cdot)$ and $s_i = 0$ with probability $1 - G_i(\cdot)$. The total number of Republican seats is $S = \sum_{i=1}^{435} s_i$. Furthermore, since the $G_i(\cdot)$ are independently (but not identically) distributed conditional on $\delta$, $S$ follows a Poisson binomial distribution with mean
-\begin{align} \label{eqn: conditional seat mean}
-\mu_S = \mu_S(\Delta u, \delta) =  \sum_{i=1}^{435} G_i(\cdot),
-\end{align}
-and variance,
-\begin{align} \label{eqn: conditional seat variance}
-\sigma_S = \sigma_S(\Delta u, \delta) = \sum_{i=1}^{435} G_i(\cdot)(1 - G_i(\cdot)),
-\end{align}
-where $\Delta \mu = \left(\Delta \mu_1, \Delta \mu_2, \ldots, \Delta \mu_{435} \right)$ represents the utility differences resulting from any allocation of campaign resources across districts by the two parties.
-
-\subsection{Equilibrium}
-Let $e^j = (e_1^j, e_2^j, \ldots, e_{435}^j)$ be the allocation of campaign spending across districts by party $j$ and $f^R(e^D, e^R)$ be the objective function used by party $R$. A Nash equilibrium in pure strategies $(e^{D*}, e^{R*})$ is then characterized by,
-\begin{align}
-f^R(e^D, e^{R*}) \geq f^R(e^{D*}, e^{R*}) \geq f^R(e^{D*}, e^{R}),
-\end{align}
-where $e^D$ and $e^R$ satisfy the budget constraint in equation~\ref{eqn: budget constraint}. The game has a unique interior NE which satisfies,
-\begin{align}
-\frac{\partial f^J}{\partial e_i^J}= Q_i u'(e^{J*}_i)=\lambda^J,
-\end{align}
-where $Q_i = \partial f^J/ \partial \Delta u_i$ and $\lambda^J$ is the Lagrange multiplier for party $j$.\footnote{For a proof of uniqueness see \citet{stromberg2008electoral}.} Since $u'(e^J)$ is decreasing in $e^J$, the parties allocate more resources to districts with higher values of $Q_i$. The value of $Q_i$ will of course depend on the choice of the objective function.
-
 \section{Data}
 The analyses in this paper requires data for three separate analyses. First, foreceasting variables are needed for the Bayesian hierarchical model. Second, both district and national polls are used for the Bayesian DLM. Third, campaign data is used to examine whether political parties donate in a manner consistent with the model.
 
@@ -197,8 +163,6 @@ The model also accounts for the ideology of candidates relative to the ideology 
 The model also includes three nationwide variables: the president's average August approval rating, the August generic ballot and an indicator variable for whether the election is being held in a midterm year.\footnote{A variable including second quarter GDP was also considered but it was not statistically or economically significant.} The \emph{August generic ballot} variable is an average of generic ballot polls in the month of August in each election year. Both the midterm variable and the presidential approval variable are multiplied by +1 if the president is a Democrat and -1 if Republican. The impetus for the \emph{midterm election} variable is previous research showing that the party of the president usually loses seats during midterm election \citep[e.g.][]{erikson1988puzzle}. 
 
 Summary statistics for these variables are presented in~\autoref{table:Summary Statistics for Forecasting Variables}. Variables rarely exceed one in absolute value and are thus on a similar scale to the dependent variable.
-
-
 
 \subsection{Campaign Spending} \label{sec: campaign spending}
 House candidates receive funds from three primary sources: party committees, PACs, and individuals.\footnote{Organizations---such as firms, unions or trade associations---that wish to spend money to influence federal elections must create a separate source of funds known as a PAC.} Campaign donors can, in turn, spend on the behalf of candidates by either making a direct contribution, a coordinated expenditure or an indirect expenditure for or against a candidate.\footnote{A common example of an independent expenditure is a TV advertisement praising a candidate or criticizing an opponent. Before 2010, corporations and unions could only fund independent expenditures from their PACs; however in 2010, the U.S. Supreme Court rule in \emph{Citizens United v. Federal Election Commission} that corporations and unions could use their own treasuries to raise money for independent expenditures.} Independent expenditures are not limited by law but cannot be coordinated with campaigns. By contrast, direct contributions and coordinated expenditures can be coordinated with a campaign but are limited by federal law.\footnote{Coordinate expenditures, are, as the name suggests, expenditures made on the behalf of campaigns that can be discussed with the campaign.}
@@ -338,7 +302,7 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 \item $\theta_{1:T}$. The states $\xi_{it}$ are drawn using the FFBS algorithm.
 \end{enumerate}
 
-\section{Results from the Forecasting Models}
+\section{Forecasting the Two-Party Vote}
 \subsection{Bayesian Hierarchical Model}
 Posterior means and quantiles for the parameters using data from 1980 - 2008 (which was used to forecast the 2010 election) are shown in~\autoref{table:Posterior Inferences for Parameters in Forecasting Model, House Elections 1980 - 2008}. All of the variables (except the August generic ballot) are precisely estimated and have 95\% credibility intervals that do not include zero. The posterior densities for all parameters are all approximately normally distributed,  which is consistent with the central limit theorem in a Bayesian context (see~\autoref{fig:Posterior Densities for Parameters in Forecasting Model} in~\aref{sec: Additional Figures 1}).\footnote{The distribution on the national error is somewhat of an exception because it is somewhat right-skewed. This likely occurs because the number of national elections is small and the the error terms are truncated at zero.}
 
@@ -347,6 +311,7 @@ The signs of the variables are generally as expected. For example, the president
 Although parameters have only been reported for the model using data from the 1980 to 2008 elections, the model was actually fit 5 separate times in order to imitate 5 separate real-time forecasts using data that would have been available to a political analyst in August \emph{prior} to each election. Each model has its own unique posterior distribution for the parameters. In practice, the district parameters do not vary much from one election to the next but that national parameters (which are estimated using much less data) become more precise over time. 
 
 \subsection{Bayesian DLM}
+\subsubsection{Posterior distribution of variance terms}
 Estimates of the square root of the variance parameters, $\sigma_\mu$ and $\sigma_\xi$ are shown in~\autoref{table:Posterior Quantiles for Square Root of DLM Variance Paramters}. The table reports estimates listed by the date the model was estimated. The posterior quantiles for $\sigma_\mu$ are consistent across dates and yield $95\%$ credible intervals ranging from around $0.015$ to  $0.023$ with a median of $0.018$. Posterior estimates of $\sigma_\xi$ are more variable but are generally pretty stable; the estimates do however increase slightly as election day nears.
 
 \begin{table}[!ht]
@@ -370,6 +335,19 @@ Estimates of the square root of the variance parameters, $\sigma_\mu$ and $\sigm
 \end{threeparttable}
 \end{center}
 \end{table}
+
+\subsubsection{DLM Forecast Evaluation}
+I evaluated the performance of the DLM using two commonly used summary measures. The first summary measure is the standard root mean square forecast error (RMSFE) described in the main body of the text. Here the standard DLM (with a prior) does considerably better than DLM with no prior. Both however have considerably lower RMSFE's than the regression based forecast from the hierarchical model. Strangely, the RMSFE's do not decrease during the campaign.
+
+The second summary measure is the Brier score, which is often used to evaluate the accuracy of binary probabilistic forecasts. For this paper, the Brier score at time $t$ can be written as $BS_t = \frac{1}{408} \sum_{i=1}^{408}(f_{it} - a_{iT})^2$, where $408$ is the number of contested House seats; $f_{it}$ is the forecasted probability that the Democratic candidate would win district $i$ at time $t$, and $a_T$ is a binary variable equal to $1$ if the Democratic candidate won the actual seat and $0$ if the Republican candidate won. Higher Brier scores indicate worse forecasting performance. As shown in the figure, the Brier scores for both DLM's decline in a linear fashion over time and are considerably smaller than the Brier score of the hierarchical model. In contrast to the RMSFE, the Brier sore suggests that the DLM without a prior is a better predictor than the DLM with a prior. 
+
+The results suggest that forecasts with the DLM's are more accurate than forecast with the hierarchical model alone, but it is somewhat disconcerting that the RMSFEs increase as the election day gets closer. \autoref{fig:RMSFE By Polling Availability and Forecast Date} in the appendix shows that this is being caused by districts with no polling data: the RMSFEs decrease (increase) over time in districts with (without) at least one poll. The poor performance of the RMSFEs in districts without polls is an artifact of the downward trend in the forecast of the national Democratic vote (see~\autoref{fig:Forecasts of the 2010 National Vote by Date}). This is illustrated in appendix~\autoref{fig:MPE By Polling Availability and Forecast Date}, which plots the mean prediction error (MPE)---defined as $E[f_{it}-v_{iT}]$ where $v_{iT}$ is the observed vote on election day---by forecast date. The plot shows that forecasts become increasingly biased toward Republicans and that the bias is only severe in districts without polls (since the poll based forecasts in districts without polls are driven entirely by the biased national polls). The bias increases the overall RMSFE but not the overall Brier score because the Brier score is more sensitive to changes in forecasts of close elections (which are the most likely to have polling data) than lopsided ones while the RMSFE is equally sensitive to changes in both.
+
+\section{Relationship Between $\mathbf{Q_i}$ and District Spending}
+\subsection{Alternative Measure of Electoral Competitiveness}
+The finding that campaign contributions are higher in close elections is a common result in the political science and economics literatures. As mentioned earlier, one drawback of these studies is that they use the ex-post electoral margin as a measure of the closeness of the election and assume a linear relationship between this margin and spending.\footnote{Some studies used the electoral margin from the previous election as a measure of closeness.} Do the values of $Q_i$ calculated using Stromberg's probabilistic voting model fit the data better?
+
+\autoref{fig:Correlation Between Measures of Electoral Competitiveness and Campaign Spending} takes a look at this question by plotting the correlation between various measure of electoral competitiveness. Based on~\autoref{fig:Correlation Between Q and Spending, by Contributor Type}, I use $Q_i^{seats}$ as the measure of electoral competitiveness derived from the probabilistic voting model. The electoral margin is measured as the absolute value of the Democratic vote share less 0.5.\footnote{Uncontested seats are treated as having an electoral margin equal to $0.5$ to maintain consistency with the probabilistic voting model.} $Q_i^{seats}$ fits the data considerably better than the electoral margin for all five elections in the sample. There is also little difference between calculating electoral margin with the actual election outcome or a forecasted value, implying that $Q_i^{seats}$ accounts for observed spending better because it depends on forecast uncertainty and that the normality assumptions on the error terms are reasonable. 
 
 \section{Supplemental Tables}
 \begin{table}[!ht]
@@ -552,6 +530,18 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \end{figure}
 
 \begin{figure}[!htb]
+\centering
+\includegraphics{../figs/forecast_eval_2010.pdf}
+\vspace{.5cm}
+\caption{Evaluations of 2010 Election Forecasts}
+\label{fig:Evaluations of 2010 Election Forecasts}
+\begin{minipage}{\linewidth}
+\footnotesize
+\emph{Notes:} Figures (a) and (b) plot the root mean square forecast errors and brier scores respectively for the different forecast models by forecast date. 
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
 \begin{center}
 \includegraphics{../figs/brier2010_bypollfreq.pdf}
 \vspace{.5cm}
@@ -572,6 +562,17 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \begin{minipage}{\linewidth}
 \footnotesize
 \emph{Notes:} PAC spending for a party consists of a direct contribution by a PAC to that party or an indirect contribution by a PAC against the opposing party. The top panel shows the correlation between $Q_i^{maj}$ and spending while the bottom panel shows the correlation between $Q_i^{seats}$ and spending.
+\end{minipage}
+\end{figure}
+
+\begin{figure}[!htb]
+\includegraphics{../figs/corbymeasure.pdf}
+\vspace{.5cm}
+\caption{Correlation Between Measures of Electoral Competitiveness and Campaign Spending}
+\label{fig:Correlation Between Measures of Electoral Competitiveness and Campaign Spending}
+\begin{minipage}{\linewidth}
+\footnotesize
+\emph{Notes:} Margin is the absolute value of the actual (forecasted) two-party vote share in a district minus 0.5. Campaign spending is the sum of all spending by PACs, party committees and individuals contributing over \$200 in a given district and year.
 \end{minipage}
 \end{figure}
 
