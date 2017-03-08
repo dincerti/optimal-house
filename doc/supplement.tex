@@ -115,7 +115,12 @@
 \renewcommand{\figurename}{Supplemental Figure}
 \renewcommand{\tablename}{Supplemental Table}
 \renewcommand{\tableautorefname}{Supplemental Table}
-
+\renewcommand{\figureautorefname}{Supplemental Figure}
+\renewcommand{\sectionautorefname}{Appendix Section}
+\renewcommand{\subsectionautorefname}{Appendix Section}
+\newcommand{\apref}[1]{\hyperref[#1]{Appendix~\ref{#1}}}
+\usepackage{xr}
+\externaldocument{optimal_house}
 
 % file paths and definitions
 \input{../output/ch1txtstats.txt}
@@ -133,7 +138,7 @@
 
 \begin{document}
 \author{Devin Incerti}
-\title{\textbf{Online Appendix}}
+\title{\textbf{Supplemental Online Appendix}}
 \date{\today}
 \maketitle
 
@@ -145,14 +150,14 @@
 \doublespacing
 
 \section{Data}
-The analyses in this paper requires data for three separate analyses. First, foreceasting variables are needed for the Bayesian hierarchical model. Second, both district and national polls are used for the Bayesian DLM. Third, campaign data is used to examine whether political parties donate in a manner consistent with the model.
+The analyses in this paper requires data for three separate analyses. First, foreceasting variables are needed for the Bayesian hierarchical model. Second, both district and national polls are used for the Bayesian DLM. Third, campaign data is used to examine whether political parties donate in a manner consistent with the theoretical model. More information about these variables are provided in Appendix Sections~\ref{sec:forecast vars}-\ref{sec:campaign spending}. \autoref{sec:data sources} provides information on the sources used to collect the data.
 
-\subsection{Forecasting Variables}
-The regression forecast includes variables (and error terms) at the national and district level.\footnote{Regional variables were also considered but they did not improve the fit of the model and only increased model complexity.} Forecasts are made as of August of each election year using post 1980 data so all variables are measured before September 1st.
+\subsection{Forecasting Variables} \label{sec:forecast vars}
+The regression forecast includes variables (and error terms) at the national and district level.\footnote{Regional variables were also considered but they did not improve the fit of the model and only increased model complexity.} Forecasts are made during August of each election year using post 1980 data so all variables are measured before September 1st.
 
 The primary dependent variable is the Democratic share of the two-party vote. This is not the only possible choice for the response variable but it is frequently used in the literature. Other choice that are essentially identical include the incumbent party's share of the vote or the margin of victory for the incumbent candidate.
 
-House elections are highly persistent from one election to the next so they can be predicted quite accurately using only the lag of the two-party vote. The lag is of course unavailable without substantial reaggregation in redistricting years so, as is common in the literature, the analysis excludes years ending in 2.\footnote{Examples of other studies that deal with redistricting years in this manner include \citet{gelman1990estimating}, \citet{kastellec2008predicting}, and \citet{gelman2008estimating}.} The lagged vote is tied in many respects to individual candidates and is not surprisingly a much stronger predictor of the vote when incumbents are running for re-election than in open-seats \citep{gelman2008estimating}. The model consequently includes the lag of the presidential vote in each district in addition to the lag of the House vote. The presidential vote is subtracted from the nationwide presidential vote to control for national trends and can be interpreted as a measure of the degree to which a district leans toward one party or another.\footnote{This variable is very similar to the Cook Partisan Voting Index (Cook PVI), which compares the two-party vote in the past two presidential elections to the nation's average share of the same presidential vote. The main difference is that I only include the previous presidential election becase of redistricting.}\footnote{Models that interacted both the lagged vote and the centered presidential vote with whether incumbents were running were also considered, but did not lead to improvements in the fit of the model.}
+House elections are highly persistent from one election to the next so they can be predicted quite accurately using only the lag of the two-party vote. The lag is unavailable without substantial reaggregation in redistricting years so, as is common in the literature, the analysis excludes years ending in 2.\footnote{Examples of other studies that deal with redistricting years in this manner include \citet{gelman1990estimating}, \citet{kastellec2008predicting}, and \citet{gelman2008estimating}.} The lagged vote is tied in many respects to individual candidates and is not surprisingly a much stronger predictor of the vote when incumbents are running for re-election than in open-seats \citep{gelman2008estimating}. The model consequently includes the lag of the presidential vote in each district in addition to the lag of the House vote. The presidential vote is subtracted from the nationwide presidential vote to control for national trends and can be interpreted as a measure of the degree to which a district leans toward one party or another.\footnote{This variable is very similar to the Cook Partisan Voting Index (Cook PVI), which compares the two-party vote in the past two presidential elections to the nation's average share of the same presidential vote. The main difference is that I only include the previous presidential election becase of redistricting.}\footnote{Models that interacted both the lagged vote and the centered presidential vote with whether incumbents were running were also considered, but did not improve the fit of the model.}
 
 One of the largest and most consistent findings in the political science literature on American elections is that, all else equal, incumbent candidates receive more votes than challengers \citep{{gelman1990estimating, lee2001electoral, ansolabehere2002incumbency, gelman2008estimating}}. To model this incumbency effect, I use the variable, \emph{Incumbent}, which is equal to $1$ if the incumbent is a Democrat, $-1$ if the incumbent is a Republican and $0$ if there is no incumbent running. $+1, 0, -1$ variables are used repeatedly in the analysis and are always equal to +1 for Democrats and -1 for Republicans; they should be thought of as dummy variables that are constrained to have the same impact on the vote for both Democratic and Republican candidates (recall that the dependent variable is the Democratic candidate's share of the two-party vote).
 
@@ -160,16 +165,25 @@ Since more experienced candidates tend to do better at the polls, I include two 
 
 The model also accounts for the ideology of candidates relative to the ideology of voters in their districts. Candidate ideology is measured using the first dimension DW-nominate score---which measures the political ideology of candidates and ranges on a liberal-conservative scale from -1 to 1. A measure of district ideology on the same scale as the DW-nominate score was created by taking a weighted average of the DW-nominate scores of the most recent presidential candidates for each party, with weights equal to each party's share of the district two-party vote in the most recent presidential election.\footnote{Michael Dukakis does not have a DW-nominate score so his ideology was imputed using the mean score among Democratic presidential candidates between 1980 and 2010.} The variable used in the model, \emph{Relative 1st dimension DW-nominate score}, is the DW-nominate score minus the district ideology score.\footnote{This variable outperformed another variable which interacted the absolute value of the DW-nominate with the party controlling the seat, suggesting that voting moderation is more strongly associated with higher vote shares than a candidate's ideological distance from the ideology of his or her voters.} In incumbent districts, this variable will have a positive sign if candidates do better at the polls when they have more moderate voting records (perhaps because they appeal more to independent voters), conditional on winning the primary election. In open seats, this variable will be positive if voters tend to elect a Democratic candidate when the previous candidate(s) had a conservative voting record and a Republican candidate when the previous candidate(s) had a liberal voting record.\footnote{In open districts, the DW-nominate score is equal to the average DW-nominate score among all representatives in the previous Congress. Most districts only have one representative per congressional session but certain events such as deaths create scenarios in which this is not the case.}\footnote{In OLS regressions, the coefficient on the interaction of the relative DW-nominate score variable with whether a seat is open is essentially zero, implying that the effect of the variable does not differ by whether a seat is open or not.}
 
-The model also includes three nationwide variables: the president's average August approval rating, the August generic ballot and an indicator variable for whether the election is being held in a midterm year.\footnote{A variable including second quarter GDP was also considered but it was not statistically or economically significant.} The \emph{August generic ballot} variable is an average of generic ballot polls in the month of August in each election year. Both the midterm variable and the presidential approval variable are multiplied by +1 if the president is a Democrat and -1 if Republican. The impetus for the \emph{midterm election} variable is previous research showing that the party of the president usually loses seats during midterm election \citep[e.g.][]{erikson1988puzzle}. 
+The model also includes three nationwide variables: the president's average August approval rating, the August generic ballot, and an indicator variable for whether the election is being held in a midterm year.\footnote{A variable including second quarter GDP was also considered but it was not statistically or economically significant.} The \emph{August generic ballot} variable is an average of generic ballot polls in the month of August in each election year. Both the variable, \emph{midterm election} and the variable, \emph{August presidential net approval rating} are multiplied by +1 if the president is a Democrat and -1 if Republican. The impetus for \emph{midterm election} is previous research showing that the party of the president usually loses seats during midterm election \citep[e.g.][]{erikson1988puzzle}. 
 
 Summary statistics for these variables are presented in~\autoref{table:Summary Statistics for Forecasting Variables}. Variables rarely exceed one in absolute value and are thus on a similar scale to the dependent variable.
 
-\subsection{Campaign Spending} \label{sec: campaign spending}
-House candidates receive funds from three primary sources: party committees, PACs, and individuals.\footnote{Organizations---such as firms, unions or trade associations---that wish to spend money to influence federal elections must create a separate source of funds known as a PAC.} Campaign donors can, in turn, spend on the behalf of candidates by either making a direct contribution, a coordinated expenditure or an indirect expenditure for or against a candidate.\footnote{A common example of an independent expenditure is a TV advertisement praising a candidate or criticizing an opponent. Before 2010, corporations and unions could only fund independent expenditures from their PACs; however in 2010, the U.S. Supreme Court rule in \emph{Citizens United v. Federal Election Commission} that corporations and unions could use their own treasuries to raise money for independent expenditures.} Independent expenditures are not limited by law but cannot be coordinated with campaigns. By contrast, direct contributions and coordinated expenditures can be coordinated with a campaign but are limited by federal law.\footnote{Coordinate expenditures, are, as the name suggests, expenditures made on the behalf of campaigns that can be discussed with the campaign.}
+\subsection{Polling Data}
+A steady stream of polls asking about the generic congressional vote during the 2010 election were released starting as early as December of 2008. All told, the website \href{http://www.realclearpolitics.com/}{Real Clear Politics} gathered  $\gbcount$ polls published by $\countgbpollsters$ different polling organizations over $\gbdays$ days with the last poll conducted $\final_gbday$ days prior to the November 2nd election.\footnote{Polls are typically conducted over multiple days. I consider the poll date to be the midpoint between the start and end date of polling (when the poll is conducted over an even number of days I use the median day closest to the start day).} Most pollsters only published a few polls (median $= \gbpollstermedian$), but the two most prolific pollsters,  Rasmussen and Gallup, conducted $\gbpollsterstop\%$ of all polls. The median sample size across surveys was $\gbmedian_samplesize$ and the average percentage of undecided respondents was $\gbundecided\%$.
 
-Although campaign fund-raising is a year-round endeavor for political candidates, it follows a cyclical pattern and naturally heats up as election day nears. This is shown in~\autoref{fig:Average Daily Expenditures by PACs on Candidates by Month, 2000 - 2010}, which plots average daily spending by PACs in election years by month across the 2000 - 2010 elections. Expenditures are fairly constant from January until August and then jump considerably in September before peaking at around \$4 million dollars per day in October and then decreasing slightly in November.\footnote{November expenditures only include spending that occurred prior to election day. Between 2000 - 2010, the latest election occurred on November 7th.} 
+District polls were considerably less prolific. Polls were published by $\countpollsters$ different pollsters for $\pollcdcount$ out of the 435 Congressional districts and the median number of polls per district in districts with at least 1 poll was $\pollmedianpercd$. The median sample size for these polls was $\pollmediansamplesize$. 
 
-Political parties are the focus of this paper, so it is worth examining the spending patterns of party committees in detail. The official campaign arms of the Democratic and Republican party in the House are the Democratic Congressional Committee (DCCC) and the National Republican Congressional Committee (NRCC). The principal goal of these organizations is to assist House candidates and help elect them to Congress. Direct contributions and coordinated expenditure are severely limited by contributions limits, so almost all spending is made independently of candidates. The Democratic National Committee (DNC) and Republican National Committee (RNC) sometimes spend money on House candidates as well, but the amount is trivial compared to the amount spent by the DCCC and NRCC.
+\autoref{fig:Summary Plots for District Polls} provides summaries of the frequencies at which district polls were fielded. As shown in panel (a) of the figure, polls were considerably more prevalent in close races (those in which the final vote share was close to $0.5$), although few to no polls were published in some close races. This is important for forecasting the election because it means that the districts that are the most difficult to predict are the ones that have the most polling data. This matters for optimal spending as well since it reduces uncertainty about the closeness of a race and provides parties with more information about which districts to target when attempting to influence the the election.
+
+Panel (b) shows the cumulative number of polls during each day of the campaign. Nearly 2/3 of the polls were fielded after the start of September, when the rate of polling began accelerating quickly. This temporal pattern is consistent with the monthly pattern in contributions (see \autoref{sec:campaign spending}), suggesting that the final two months of campaigns capture the most crucial moments.
+
+\subsection{Campaign Spending} \label{sec:campaign spending}
+House candidates receive funds from three primary sources: party committees, PACs, and individuals.\footnote{Organizations---such as firms, unions or trade associations---that wish to spend money to influence federal elections must create a separate source of funds known as a PAC.} Campaign donors can, in turn, spend on the behalf of candidates by either making a direct contribution, a coordinated expenditure, or an indirect expenditure for or against a candidate.\footnote{A common example of an independent expenditure is a TV advertisement praising a candidate or criticizing an opponent. Before 2010, corporations and unions could only fund independent expenditures from their PACs; however in 2010, the U.S. Supreme Court rule in \emph{Citizens United v. Federal Election Commission} that corporations and unions could use their own treasuries to raise money for independent expenditures.} Independent expenditures are not limited by law but cannot be coordinated with campaigns. By contrast, direct contributions and coordinated expenditures can be coordinated with a campaign but are limited by federal law.\footnote{Coordinate expenditures, are, as the name suggests, expenditures made on the behalf of campaigns that can be discussed with the campaign.}
+
+Although campaign fund-raising is a year-round endeavor for political candidates, it follows a cyclical pattern and increases as election day nears. This is shown in~\autoref{fig:Average Daily Expenditures by PACs on Candidates by Month, 2000 - 2010}, which plots average daily spending by PACs in election years by month across the 2000 - 2010 elections. Expenditures are fairly constant from January until August and then jump considerably in September before peaking at around \$4 million dollars per day in October and then decreasing slightly in November.\footnote{November expenditures only include spending that occurred prior to election day. Between 2000 - 2010, the latest election occurred on November 7th.} 
+
+Political parties are the focus of this paper, so it is worth examining the spending patterns of party committees in detail. The official campaign arms of the Democratic and Republican party in the House are the Democratic Congressional Committee (DCCC) and the National Republican Congressional Committee (NRCC). The principal goal of these organizations is to assist House candidates and help elect them to Congress. Direct contributions and coordinated expenditure are severely limited by contributions limits, so almost all spending is made independently of candidates. The Democratic National Committee (DNC) and Republican National Committee (RNC) sometimes spend money on House candidates as well, but the amount is very small compared to the amount spent by the DCCC and NRCC.
 
 While the national party committees have clear incentives to maximize the electoral success of their respective parties, it is unclear whether other organizations share this same goal. \citet{herrnson2009roles} has argued that the reach of political parties extends considerably further than with the national party committees. He views parties as multilayered coalitions that include actors not usually considered as components of the party. I adopt this classification scheme and separate parties into three separate categories: national party committees, party-connected committees, and allied PACs. 
 
@@ -179,47 +193,39 @@ Post-August spending for these groups and other non-aligned PACs are shown in~\a
 
 Candidates also receive a large percentage of their funds from individuals. Contributions from individuals donating over \$200 are itemized but contributions from smaller donors are not. During the 2009 - 2010 election cycle, only $0.26\%$ of the U.S. population gave more than \$200, but total contributions for these individuals summed to \$1.9 billion while contributions from all other individuals were only \$1.1 billion.\footnote{See \url{https://www.opensecrets.org/bigpicture/}.} Individuals who donated over \$200 spent \$$\expindivsdem$ and \$$\expindivsrep$ per district on Democratic and Republican candidates after August 31st in non-redistricting years from 2000 - 2010 respectively. Since contributions for individuals who donated less than \$200 are not itemized, I cannot make a comparable calculation for donations from these individuals. However, if one assumes that spending on House candidates mirrors total spending, then contributions from small donors should have totaled around \$58,000.\footnote{Individuals donating less than \$200 spent $\$1.1\; \rm{billion}/\$1.9\; \rm{billion} \approx 0.58$ as much as larger donors in 2010. These larger donors, in turn, spend around \$100,000 per district so smaller donors likely spent close to $0.58 \cdot \$100,000 \approx \$58,000$.} Total PAC and party committee spending on House candidates is therefore larger than spending from individuals and the national party committees are the largest single source of funds for House candidates.
 
-\subsection{Polling Data}
-A steady stream of polls asking about the generic congressional vote during the 2010 election were released starting as early as December of 2008. All told, the website \href{http://www.realclearpolitics.com/}{Real Clear Politics} gathered  $\gbcount$ polls published by $\countgbpollsters$ different polling organizations over $\gbdays$ days with the last poll conducted $\final_gbday$ days prior to the November 2nd election.\footnote{Polls are typically conducted over multiple days. I consider the poll date to be the midpoint between the start and end date of polling (when the poll is conducted over an even number of days I use the median day closest to the start day).} Most pollsters only published a few polls (median $= \gbpollstermedian$), but the two most prolific pollsters,  Rasmussen and Gallup, conducted $\gbpollsterstop\%$ of all polls. The median sample size across surveys was $\gbmedian_samplesize$ and the average percentage of undecided respondents was $\gbundecided\%$.
-
-District polls were considerably less prolific. Polls were published by $\countpollsters$ different pollsters for $\pollcdcount$ out of the 435 Congressional districts and the median number of polls per district in districts with at least 1 poll was $\pollmedianpercd$. The median sample size for these polls was $\pollmediansamplesize$. 
-
-\autoref{fig:Summary Plots for District Polls} provides summaries of the frequencies at which district polls were fielded. As shown in panel (a) of the figure, polls were considerably more prevalent in close races (those in which the final vote share was close to $0.5$), although few to no polls were published in some close races. This is important for forecasting the election because it means that the districts that are the most difficult to predict are the ones that have the most polling data. This matters for optimal spending as well since it reduces uncertainty about the closeness of a race and provides parties a better sense of which districts to target when attempting to influence the variance of the election.\footnote{Recall that the trailing (leading) party in total seats has an incentive to spend more on districts in which it is losing (winning) if parties are trying to win a majority of seats.}
-
-Panel (b) of the figure shows the cumulative number of polls during each day of the campaign. Nearly 2/3 of the polls were fielded after the start of September, when the rate of polling began accelerating quickly. This temporal pattern is consistent with the monthly pattern in contributions, suggesting that the final two months of campaigns capture the most crucial moments.
-
-
-
-\subsection{Data Sources}
+\subsection{Data Sources}\label{sec:data sources}
 \subsubsection{Gary Jacobson Data}
-Data were generously provided by Gary Jacobson.
+Data on House elections from 1946 - 2012 were generously provided by Gary Jacobson. The Gary Jacobson data provide district level information including the Democrat's share of the two party vote in both House and presidential elections, whether an incumbent is running for reelection (and the party of the incumbent), and whether a challenger has previously held office.
 
 \subsubsection{DW-Nominate Score}
-The data is available for download at \url{http://www.voteview.com/dwnominate.asp}.
+The data is available for download at \url{http://www.voteview.com/dwnominate.asp}. The DW-nominate scores are the first dimension scores originally developed by Keith Poole and Howard Rosenthal, which can be interpreted as the liberal-conservative divide in modern politics \citep{poole1997congress, poole2011ideology}.
+
+\subsubsection{Congressional Committee Data}
+Data on the committee assignments of members of Congress from each district are from \citep{stewart2015}.
 
 \subsubsection{National Variables}
 \emph{Second quarter GDP}: The percent change in U.S. GDP from one quarter to the next in chained 2009 dollars was considered but not used in the final hierarchical model. It is available for download from the Bureau of Economic Analysis at \url{http://www.bea.gov/national/index.htm}. \\
-\emph{Presidential net approval rating}: Approval ratings were scraped from the president specific webpages with links available at \url{http://www.ropercenter.uconn.edu/CFIDE/roper/presidential/webroot/presidential_rating.cfm}. \\
-\emph{Generic Congressional Ballot:} Gallup polls were searched for and downloaded using the iPOLL Databank at(\url{http://www.ropercenter.uconn.edu/data_access/ipoll/ipoll.html}. There were two main survey questions of interest that were typically worded as ``If the elections for Congress were being held today, which party's candidate would you vote for in your 
-Congressional district'' and ``As of today, do you lean more toward''. I consider a respondent to favor a particular party if they say they would vote for that party or they lean more toward that party. Although a sample of likely voters is preferred, Gallup does not include the data used to estimate a likely voter sample, so I use a registered voter sample instead.
+\emph{Presidential net approval rating}: Approval ratings were scraped from president specific webpages with available at \url{http://www.ropercenter.uconn.edu/CFIDE/roper/presidential/webroot/presidential_rating.cfm}. The net approval ratings is the percentage of survey respondents who approve of the president minus the percentage who disapprove. The ratings are based on polls conducted by various polling organizations multiple times each month. \\
+\emph{Generic congressional ballot:} Gallup polls were searched for and downloaded using the iPOLL Databank at \url{http://www.ropercenter.uconn.edu/data_access/ipoll/ipoll.html}. There were two main survey questions of interest that were typically worded as ``If the elections for Congress were being held today, which party's candidate would you vote for in your 
+Congressional district'' and ``As of today, do you lean more toward''. I consider a respondent to favor a particular party if they say they would vote for that party or they lean more toward that party. Although a sample of likely voters is preferred, Gallup does not include the data used to estimate a likely voter sample, so I use a registered voter sample instead. Survey results for this question are more difficult to obtain than presidential approval ratings since each poll must be searched for individually so I consequently restrict the generic ballot questions to those asked by Gallup in August (the month the forecast is being made).
 
 \subsubsection{Spending Data}
-Data on campaign spending are from the campaign finance data provided by the Center for Responsive Politics (CRP) (\url{https://www.opensecrets.org/}). CRP obtains the campaign finance data from the Federal Election Commission and adds value to it by cleaning and categorizing the data. Spending to specific candidates is from the ``PAC'' table and the ``indivs'' table which contain itemized spending data for PACs and individuals contributing over \$200 respectively. Information on the districts of specific candidates is linked to these tables with the ``Cands'' table, which provides information on each candidate. 
+Data on campaign spending are from the campaign finance data provided by the Center for Responsive Politics (CRP) (\url{https://www.opensecrets.org/}). CRP obtains the campaign finance data from the Federal Election Commission and adds value to it by cleaning and categorizing the data. Spending to specific candidates is from the ``PAC'' table and the ``indivs'' table which contain itemized spending data for PACs and individuals contributing over \$200 respectively.\footnote{Contributions from party committees are included in the PAC table.} The data can be separated by date, individual employer, and PAC type. Information on the districts of specific candidates is linked to these tables with the ``Cands'' table, which provides information on each candidate. 
 
 \subsubsection{House Polls}
-Polls were scraped from the website \url{http://www.realclearpolitics.com/epolls/other/2010_generic_congressional_vote-2171.html} and the 2010 New York times House election forecasts (\url{http://elections.nytimes.com/2010/forecasts/house}.
+The district polls are all of those used by the New York times to forecast the 2010 House election and  were scraped from \url{http://elections.nytimes.com/2010/forecasts/house}. National polls were scraped from the website \url{http://www.realclearpolitics.com/} and include all polls listed for the generic congressional vote. Each poll contains the date that the poll was taken, its sample size, and the proportion of respondents favoring the Democrat and Republican candidate. 
 
 \section{Gibbs Sampler for the DLM} \label{sec: Gibbs}
 \subsection{DLM Form} \label{sec: DLM Form}
 \subsubsection{National Model} 
-Let $K_t$ be the numbers of polls published on day $t$ and $J$ be the number of polling firms. Then, equations~\ref{observation eqn national} and \ref{system eqn national} can be written in the form,
+Let $K_t$ be the numbers of polls published on day $t$ and $J$ be the number of polling firms. Then, equations~\ref{observation eqn national} and \ref{system eqn national} from the main text can be written in the form,
 \begin{align}
-\label{eqn: dlm observation}
+\label{eqn:natdlm_obs}
 \underset{(K_t \times 1)}{Y_t} &= \underset{(K_t \times 1)}{F_t} \underset{(1 \times 1)}{\theta_t} + \underset{(K_t \times J)}{A_t} \underset{(J \times 1)}{\Lambda} + \underset{(K_t \times 1)}{v_t},\; v_t \sim N(0, V_t)\\
-\label{eqn: dlm state}
+\label{eqn:natdlm_state}
 \underset{(1 \times 1)}{\theta_t} &= \underset{(1 \times 1)}{G}\underset{(1 \times 1)}{\theta_{t-1}} + \underset{(1 \times 1)}{w_t},\; w_t \sim N(0, W),
 \end{align}
-where $Y_t$ is a column vector of all polls published at time $t$, $F_t$ is a column vector of $1$'s, $A_t$ is a matrix of binary indicators equal to $1$ if polling firm $j$ published the $k$'th poll and $0$ otherwise, $G=1$, $\theta_t = \mu_t$, $\Lambda =[\lambda_1\; \lambda_2\cdots \lambda_J]^T$,  $V_t$ is a $K_t \times K_t$ diagonal matrix with $\sigma^2_k$ along the diagonal and $W=\sigma^2_\mu$.
+where $Y_t$ is a column vector of all polls published at time $t$, $F_t$ is a column vector of $1$'s, $A_t$ is a matrix of binary indicators equal to $1$ if polling firm $j$ published the $k$'th poll and $0$ otherwise, $G=1$, $\theta_t = \mu_t$, $\Lambda =[\lambda_1\; \lambda_2\cdots \lambda_J]^T$,  $V_t$ is a $K_t \times K_t$ diagonal matrix with $\sigma^2_k$ along the diagonal and $W=\sigma^2_\mu$. Appendix equation~\ref{eqn:natdlm_obs} is known as the observation equation while Appendix equation~\ref{eqn:natdlm_state} is known as the state equation. 
 
 \subsubsection{District Model} 
 Let $m$ be the number of districts with polling data and $L_t$ be the numbers of polls published on day $t$. Then, equations~\ref{observation eqn district} and \ref{system eqn district} can be written in the form,
@@ -314,28 +320,6 @@ Although parameters have only been reported for the model using data from the 19
 \subsubsection{Posterior distribution of variance terms}
 Estimates of the square root of the variance parameters, $\sigma_\mu$ and $\sigma_\xi$ are shown in~\autoref{table:Posterior Quantiles for Square Root of DLM Variance Paramters}. The table reports estimates listed by the date the model was estimated. The posterior quantiles for $\sigma_\mu$ are consistent across dates and yield $95\%$ credible intervals ranging from around $0.015$ to  $0.023$ with a median of $0.018$. Posterior estimates of $\sigma_\xi$ are more variable but are generally pretty stable; the estimates do however increase slightly as election day nears.
 
-\begin{table}[!ht]
-\footnotesize
-\begin{center}
-\begin{threeparttable}
-\caption{Posterior Quantiles for Square Root of DLM Variance Paramters} \label{table:Posterior Quantiles for Square Root of DLM Variance Paramters}
-\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}d{-1}d{-1}d{-1}d{-1}d{-1}d{-1}d{-1}}
-\vspace{-5pt}\\
-\hline
-\hline
-\multicolumn{1}{c}{} & \multicolumn{3}{c}{National model ($\sigma_\mu$)}& \multicolumn{3}{c}{District model ($\sigma_\xi$)}\\
-\cmidrule{2-4} \cmidrule{5-7}
-\multicolumn{1}{c}{Months to election} & \multicolumn{1}{c}{2.5\%}& \multicolumn{1}{c}{Median}& \multicolumn{1}{c}{97.5\%}  & \multicolumn{1}{c}{2.5\%}& \multicolumn{1}{c}{Median}& \multicolumn{1}{c}{97.5\%}  \\
-\hline
-\ExpandableInput{../tables/postpsi.txt}
-\hline
-\hline
-\end{tabular*}
-\scriptsize Notes: Months to election refers to the date that the model was estimated.
-\end{threeparttable}
-\end{center}
-\end{table}
-
 \subsubsection{DLM Forecast Evaluation}
 I evaluated the performance of the DLM using two commonly used summary measures. The first summary measure is the standard root mean square forecast error (RMSFE) described in the main body of the text. Here the standard DLM (with a prior) does considerably better than DLM with no prior. Both however have considerably lower RMSFE's than the regression based forecast from the hierarchical model. Strangely, the RMSFE's do not decrease during the campaign.
 
@@ -416,10 +400,40 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \end{center}
 \end{table}
 
+\begin{table}[!ht]
+\footnotesize
+\begin{center}
+\begin{threeparttable}
+\caption{Posterior Quantiles for Square Root of DLM Variance Paramters} \label{table:Posterior Quantiles for Square Root of DLM Variance Paramters}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}d{-1}d{-1}d{-1}d{-1}d{-1}d{-1}d{-1}}
+\vspace{-5pt}\\
+\hline
+\hline
+\multicolumn{1}{c}{} & \multicolumn{3}{c}{National model ($\sigma_\mu$)}& \multicolumn{3}{c}{District model ($\sigma_\xi$)}\\
+\cmidrule{2-4} \cmidrule{5-7}
+\multicolumn{1}{c}{Months to election} & \multicolumn{1}{c}{2.5\%}& \multicolumn{1}{c}{Median}& \multicolumn{1}{c}{97.5\%}  & \multicolumn{1}{c}{2.5\%}& \multicolumn{1}{c}{Median}& \multicolumn{1}{c}{97.5\%}  \\
+\hline
+\ExpandableInput{../tables/postpsi.txt}
+\hline
+\hline
+\end{tabular*}
+\scriptsize Notes: Months to election refers to the date that the model was estimated.
+\end{threeparttable}
+\end{center}
+\end{table}
 
 %\renewcommand\thefigure{\thesection.\arabic{figure}}    
 \section{Supplemental Figures} \label{sec: Additional Figures 1}
 \setcounter{figure}{0}
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics{../figs/polldescstats.pdf}
+\vspace{.5cm}
+\caption{Summary Plots for District Polls}
+\label{fig:Summary Plots for District Polls}
+\end{figure} 
 
  \begin{figure}[!htb]
 \centering
@@ -433,13 +447,6 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \end{minipage}
 \end{figure}
 
-\begin{figure}[!htb]
-\centering
-\includegraphics{../figs/polldescstats.pdf}
-\vspace{.5cm}
-\caption{Summary Plots for District Polls}
-\label{fig:Summary Plots for District Polls}
-\end{figure} 
 
 \begin{landscape}
 \begin{figure}[!ht]
@@ -576,14 +583,8 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \end{minipage}
 \end{figure}
 
-\section{Extra stuff}
-The analyses in this paper utilize four main sets of data: data on nationwide variables, data on representatives from the U.S. House, campaign contributions data, and polling data. The main nationwide variables collected are the president's net approval rating and the Gallup generic Congressional ballot. Both the presidential approval rating and the Gallup generic ballot were obtained from the Roper Center Public Opinion Archives. The net approval ratings is the percentage of survey respondents who approve of the president minus the percentage who disapprove. The ratings are based on polls conducted by various polling organizations multiple times each month. The generic ballot is based on a survey question that asks voters whether they intend to vote for a generic (does not include candidate names) Republican or Democrat in the House election. Survey results for this question are more difficult to obtain than presidential approval ratings since each poll must be searched for individually so I consequently restrict the generic ballot questions to those asked by Gallup in August (the month the forecast is being made).
 
-The second dataset consists of data from three sources: data on  House elections from 1946 - 2012 obtained from Gary Jacobson; the committee assignments of members of Congress from each district \citep{stewart2015}; and DW-Nominate scores from \url{http://voteview.com/}. The Gary Jacobson data provides information on a number of important characteristics of House elections at the district level. These include the Democrat's share of the two party vote in both House and presidential elections, whether an incumbent is running for reelection (and the party of the incumbent), and whether a challenger has previously held office. The DW-nominate scores are the first dimension scores originally developed by Keith Poole and Howard Rosenthal, which can be interpreted as the liberal-conservative divide in modern politics \citep{poole1997congress, poole2011ideology}.
 
-The third dataset contains campaign finance data provided by the Center for Responsive Politics (CRP) at \url{https://www.opensecrets.org/}. CRP obtains the data from the Federal Election Commission and adds value to it by cleaning and categorizing the data. The data covers campaign contributions from individuals (above \$200) and Political Action Committees (PACs).\footnote{Contributions from party committees are included in the PAC table.} The data can be separated by date, individual employer, and PAC type, which allows me to track contributions during different times of the campaign and to focus on spending by different types of contributors. 
-
-The final dataset covers district and national polls for the 2010 House election. The district polls are all of those used by the New York times to forecast the 2010 House election and the national polls are the polls listed for the generic congressional vote on the website \url{http://www.realclearpolitics.com/}. Each poll contains the date that the poll was taken, its sample size and the proportion of respondents favoring the Democrat and Republican candidate. 
 
 
 \pdfbookmark[1]{References}{References}
