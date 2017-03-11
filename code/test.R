@@ -23,29 +23,6 @@ test_that("derG", {
   expect_equal(q1, -q2)
 })
 
-# optimization with logarithmic functional form
-estar <- (dnorm(1/2 - 0 - V - delta, 0, sigma)/sum(dnorm(1/2 - 0 - V - delta, 0, sigma))) * 15
-utility <- function(e, theta){
-  return(theta * log(e) - estar)
-}
-theta.default <- theta; V.default <- V; delta.default <- delta; sigma.default <- sigma
-min_seats <- function(e){
-  u <- utility(e, theta)
-  -sum(pnorm(1/2 - u - V - delta, 0, sigma))
-}
-bc <- function(e) {
-  sum(e)
-}
-max_seats(e = c(5, 5, 5), theta = theta, V = V, delta = delta, sigma = sigma)
-constrOptim(c(1, 12, 1), min_seats, grad = NULL, ui = c(-1, -1, -1), ci = -15)
-gosolnp(pars =estar, #starting values (random - obviously need to be positive and sum to 15)
-      fun = min_seats, #function to optimise
-     eqfun = bc, #equality function 
-     eqB = 15,   #the equality constraint
-     LB = c(0,0,0), #lower bound for parameters i.e. greater than zero
-     UB = c(15,15,15)) #upper bound for parameters (I just chose 100 randomly)
-
-
 # TEST Q FOR MAXIMING PROBABILIY OF WINNING K SEATS -----------------------------
 # probability winning more than k seats
 prob_k <- function(u, k, V, delta){
