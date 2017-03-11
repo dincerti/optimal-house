@@ -152,14 +152,14 @@
 \doublespacing
 
 \section{Data}
-The analyses in this paper requires data for three separate analyses. First, foreceasting variables are needed for the Bayesian hierarchical model. Second, both district and national polls are used for the Bayesian DLM. Third, campaign data is used to examine whether political parties donate in a manner consistent with the theoretical model. More information about these variables are provided in Appendix Sections~\ref{sec:forecast-vars}-\ref{sec:campaign-spending}. \autoref{sec:data sources} provides information on the sources used to collect the data.
+The main text requires data for three separate analyses. First, forecasting variables are needed for the Bayesian hierarchical model. Second, both district and national polls are used for the Bayesian DLM. Third, campaign data is used to examine whether political parties donate in a manner consistent with the theoretical model. More information about these variables are provided in sections~\ref{sec:forecast-vars}-\ref{sec:campaign-spending}. \autoref{sec:data sources} provides information on the sources used to collect the data.
 
 \subsection{Forecasting Variables} \label{sec:forecast-vars}
 The regression forecast includes variables (and error terms) at the national and district level.\footnote{Regional variables were also considered but they did not improve the fit of the model and only increased model complexity.} Forecasts are made during August of each election year using post 1980 data so all variables are measured before September 1st.
 
 The primary dependent variable is the Democratic share of the two-party vote. This is not the only possible choice for the response variable but it is frequently used in the literature. Other choice that are essentially identical include the incumbent party's share of the vote or the margin of victory for the incumbent candidate.
 
-House elections are highly persistent from one election to the next so they can be predicted quite accurately using only the lag of the two-party vote. The lag is unavailable without substantial reaggregation in redistricting years so, as is common in the literature, the analysis excludes years ending in 2.\footnote{Examples of other studies that deal with redistricting years in this manner include \citet{gelman1990estimating}, \citet{kastellec2008predicting}, and \citet{gelman2008estimating}.} The lagged vote is tied in many respects to individual candidates and is not surprisingly a much stronger predictor of the vote when incumbents are running for re-election than in open-seats \citep{gelman2008estimating}. The model consequently includes the lag of the presidential vote in each district in addition to the lag of the House vote. The presidential vote is subtracted from the nationwide presidential vote to control for national trends and can be interpreted as a measure of the degree to which a district leans toward one party or another.\footnote{This variable is very similar to the Cook Partisan Voting Index (Cook PVI), which compares the two-party vote in the past two presidential elections to the nation's average share of the same presidential vote. The main difference is that I only include the previous presidential election becase of redistricting.}\footnote{Models that interacted both the lagged vote and the centered presidential vote with whether incumbents were running were also considered, but did not improve the fit of the model.}
+House elections are highly persistent from one election to the next so they can be predicted quite accurately using only the lag of the two-party vote. The lag is unavailable without substantial re-aggregation in redistricting years so, as is common in the literature, the analysis excludes years ending in 2.\footnote{Examples of other studies that deal with redistricting years in this manner include \citet{gelman1990estimating}, \citet{kastellec2008predicting}, and \citet{gelman2008estimating}.} The lagged vote is tied in many respects to individual candidates and is not surprisingly a much stronger predictor of the vote when incumbents are running for re-election than in open-seats \citep{gelman2008estimating}. The model consequently includes the lag of the presidential vote in each district in addition to the lag of the House vote. The presidential vote is subtracted from the nationwide presidential vote to control for national trends and can be interpreted as a measure of the degree to which a district leans toward one party or another.\footnote{This variable is very similar to the Cook Partisan Voting Index (Cook PVI), which compares the two-party vote in the past two presidential elections to the nation's average share of the same presidential vote. The main difference is that I only include the previous presidential election because of redistricting.}\footnote{Models that interacted both the lagged vote and the centered presidential vote with whether incumbents were running were also considered, but did not improve the fit of the model.}
 
 One of the largest and most consistent findings in the political science literature on American elections is that, all else equal, incumbent candidates receive more votes than challengers \citep{{gelman1990estimating, lee2001electoral, ansolabehere2002incumbency, gelman2008estimating}}. To model this incumbency effect, I use the variable, \emph{Incumbent}, which is equal to $1$ if the incumbent is a Democrat, $-1$ if the incumbent is a Republican and $0$ if there is no incumbent running. $+1, 0, -1$ variables are used repeatedly in the analysis and are always equal to +1 for Democrats and -1 for Republicans; they should be thought of as dummy variables that are constrained to have the same impact on the vote for both Democratic and Republican candidates (recall that the dependent variable is the Democratic candidate's share of the two-party vote).
 
@@ -176,13 +176,13 @@ A steady stream of polls asking about the generic congressional vote during the 
 
 District polls were considerably less prolific. Polls were published by $\countpollsters$ different pollsters for $\pollcdcount$ out of the 435 Congressional districts and the median number of polls per district in districts with at least 1 poll was $\pollmedianpercd$. The median sample size for these polls was $\pollmediansamplesize$. 
 
-\autoref{fig:Summary Plots for District Polls} provides summaries of the frequencies at which district polls were fielded. As shown in panel (a) of the figure, polls were considerably more prevalent in close races (those in which the final vote share was close to $0.5$), although few to no polls were published in some close races. This is important for forecasting the election because it means that the districts that are the most difficult to predict are the ones that have the most polling data. This matters for optimal spending as well since it reduces uncertainty about the closeness of a race and provides parties with more information about which districts to target when attempting to influence the the election.
+\autoref{fig:Summary Plots for District Polls} provides summaries of the frequencies at which district polls were fielded. As shown in panel (a) of the figure, polls were considerably more prevalent in close races (those in which the final vote share was close to $0.5$), although few to no polls were published in some close races. This is important for forecasting the election because it means that the districts that are the most difficult to predict are the ones that have the most polling data. This matters for optimal spending as well since it reduces uncertainty about the closeness of a race and provides parties with more information about which districts to target when attempting to influence the election.
 
 Panel (b) shows the cumulative number of polls during each day of the campaign. Nearly 2/3 of the polls were fielded after the start of September, when the rate of polling began accelerating quickly. This temporal pattern is consistent with the monthly pattern in contributions (see \autoref{sec:campaign-spending}), suggesting that the final two months of campaigns capture the most crucial moments.
 
 \subsection{Campaign Spending} 
 \label{sec:campaign-spending}
-House candidates receive funds from three primary sources: party committees, PACs, and individuals.\footnote{Organizations---such as firms, unions or trade associations---that wish to spend money to influence federal elections must create a separate source of funds known as a PAC.} Campaign donors can, in turn, spend on the behalf of candidates by either making a direct contribution, a coordinated expenditure, or an indirect expenditure for or against a candidate.\footnote{A common example of an independent expenditure is a TV advertisement praising a candidate or criticizing an opponent. Before 2010, corporations and unions could only fund independent expenditures from their PACs; however in 2010, the U.S. Supreme Court rule in \emph{Citizens United v. Federal Election Commission} that corporations and unions could use their own treasuries to raise money for independent expenditures.} Independent expenditures are not limited by law but cannot be coordinated with campaigns. By contrast, direct contributions and coordinated expenditures can be coordinated with a campaign but are limited by federal law.\footnote{Coordinate expenditures, are, as the name suggests, expenditures made on the behalf of campaigns that can be discussed with the campaign.}
+House candidates receive funds from three primary sources: party committees, PACs, and individuals.\footnote{Organizations---such as firms, unions or trade associations---that wish to spend money to influence federal elections must create a separate source of funds known as a PAC.} Campaign donors can, in turn, spend on the behalf of candidates by either making a direct contribution, a coordinated expenditure, or an indirect expenditure for or against a candidate.\footnote{A common example of an independent expenditure is a TV advertisement praising a candidate or criticizing an opponent. Before 2010, corporations and unions could only fund independent expenditures from their PACs; however in 2010, the U.S. Supreme Court ruled in \emph{Citizens United v. Federal Election Commission} that corporations and unions could use their own treasuries to raise money for independent expenditures.} Independent expenditures are not limited by law but cannot be coordinated with campaigns. By contrast, direct contributions and coordinated expenditures can be coordinated with a campaign but are limited by federal law.\footnote{Coordinate expenditures, are, as the name suggests, expenditures made on the behalf of campaigns that can be discussed with the campaign.}
 
 Although campaign fund-raising is a year-round endeavor for political candidates, it follows a cyclical pattern and increases as election day nears. This is shown in~\autoref{fig:Average Daily Expenditures by PACs on Candidates by Month, 2000 - 2010}, which plots average daily spending by PACs in election years by month across the 2000 - 2010 elections. Expenditures are fairly constant from January until August and then jump considerably in September before peaking at around \$4 million dollars per day in October and then decreasing slightly in November.\footnote{November expenditures only include spending that occurred prior to election day. Between 2000 - 2010, the latest election occurred on November 7th.} 
 
@@ -213,7 +213,7 @@ Data on the committee assignments of members of Congress from each district are 
 Congressional district'' and ``As of today, do you lean more toward''. I consider a respondent to favor a particular party if they say they would vote for that party or they lean more toward that party. Although a sample of likely voters is preferred, Gallup does not include the data used to estimate a likely voter sample, so I use a registered voter sample instead. Survey results for this question are more difficult to obtain than presidential approval ratings since each poll must be searched for individually so I consequently restrict the generic ballot questions to those asked by Gallup in August (the month the forecast is being made).
 
 \subsubsection{Spending Data}
-Data on campaign spending are from the campaign finance data provided by the Center for Responsive Politics (CRP) (\url{https://www.opensecrets.org/}). CRP obtains the campaign finance data from the Federal Election Commission and adds value to it by cleaning and categorizing the data. Spending to specific candidates is from the ``PAC'' table and the ``indivs'' table which contain itemized spending data for PACs and individuals contributing over \$200 respectively.\footnote{Contributions from party committees are included in the PAC table.} The data can be separated by date, individual employer, and PAC type. Information on the districts of specific candidates is linked to these tables with the ``Cands'' table, which provides information on each candidate. 
+Data on campaign spending are from the campaign finance data provided by the Center for Responsive Politics (CRP) (\url{https://www.opensecrets.org/}). CRP obtains the campaign finance data from the Federal Election Commission and adds value to it by cleaning and categorizing the data. Spending to specific candidates is from the ``PAC'' table and the ``Indivs'' table which contain itemized spending data for PACs and individuals contributing over \$200 respectively.\footnote{Contributions from party committees are included in the PAC table.} The data can be separated by date, individual employer, and PAC type. Information on the districts of specific candidates is linked to these tables with the ``Cands'' table, which provides information on each candidate. 
 
 \subsubsection{House Polls}
 The district polls are all of those used by the New York times to forecast the 2010 House election and  were scraped from \url{http://elections.nytimes.com/2010/forecasts/house}. National polls were scraped from the website \url{http://www.realclearpolitics.com/} and include all polls listed for the generic congressional vote. Each poll contains the date that the poll was taken, its sample size, and the proportion of respondents favoring the Democrat and Republican candidate. 
@@ -221,7 +221,7 @@ The district polls are all of those used by the New York times to forecast the 2
 \section{Gibbs Sampler for the DLM} \label{sec:gibbs}
 \subsection{DLM Form} \label{sec: DLM Form}
 \subsubsection{National Model} 
-Let $K_t$ be the numbers of polls published on day $t$ and $J$ be the number of polling firms. Then, equations~\ref{observation eqn national} and \ref{system eqn national} from the main text can be written in the form,
+Let $K_t$ be the numbers of polls published on day $t$ and $J$ be the number of polling firms. Then, equations~\ref*{observation eqn national} and \ref*{system eqn national} from the main text can be written in the form,
 \begin{align}
 \label{eqn:natdlm_obs}
 \underset{(K_t \times 1)}{Y_t} &= \underset{(K_t \times 1)}{F_t} \underset{(1 \times 1)}{\theta_t} + \underset{(K_t \times J)}{A_t} \underset{(J \times 1)}{\Lambda} + \underset{(K_t \times 1)}{v_t},\; v_t \sim N(0, V_t)\\
@@ -231,7 +231,7 @@ Let $K_t$ be the numbers of polls published on day $t$ and $J$ be the number of 
 where $Y_t$ is a column vector of all polls published at time $t$, $F_t$ is a column vector of $1$'s, $A_t$ is a matrix of binary indicators equal to $1$ if polling firm $j$ published the $k$th poll and $0$ otherwise, $G=1$, $\theta_t = \mu_t$, $\Lambda =[\lambda_1\; \lambda_2\cdots \lambda_J]^T$,  $V_t$ is a $K_t \times K_t$ diagonal matrix with $\sigma^2_k$ along the diagonal and $W=\sigma^2_\mu$. \autoref{eqn:natdlm_obs} is known as the observation equation while \autoref{eqn:natdlm_state} is known as the state equation. 
 
 \subsubsection{District Model} 
-Let $m$ be the number of districts with polling data and $L_t$ be the numbers of polls published on day $t$. Then, equations~\ref{observation eqn district} and \ref{system eqn district} from the main text can be written in the form,
+Let $m$ be the number of districts with polling data and $L_t$ be the numbers of polls published on day $t$. Then, equations~\ref*{observation eqn district} and \ref*{system eqn district} from the main text can be written in the form,
 \begin{align}
 \label{eqn: dlm observation}
 \underset{(L_t \times 1)}{Y_t} &= \underset{(L_t \times m)}{F_t} \underset{(m \times 1)}{\theta_t} + \underset{(L_t \times 1)}{v_t},\; v_t \sim N(0, V_t)\\
@@ -313,29 +313,30 @@ p(\sigma_\xi^2|\ldots)&\sim \mathcal{IG}\left(\alpha_\xi + Tm/2, \beta_\xi + \fr
 \end{enumerate}
 
 \section{Forecasting the Two-Party Vote}
-\subsection{Bayesian Hierarchical Model}
-Posterior means and quantiles for the parameters using data from 1980 - 2008 (which was used to forecast the 2010 election) are shown in~\autoref{table:Posterior Inferences for Parameters in Forecasting Model, House Elections 1980 - 2008}. All of the variables (except the August generic ballot) are precisely estimated and have 95\% credibility intervals that do not include zero. The posterior densities for all parameters are all approximately normally distributed,  which is consistent with the central limit theorem in a Bayesian context (see~\autoref{fig:Posterior Densities for Parameters in Forecasting Model}).\footnote{The distribution on the national error is somewhat of an exception because it is somewhat right-skewed. This likely occurs because the number of national elections is small and the the error terms are truncated at zero.}
+\subsection{Bayesian Hierarchical Model}\label{sec:forecast_hierarchical}
+Posterior means and quantiles for the parameters using data from 1980 - 2008 (which was used to forecast the 2010 election) are shown in~\autoref{table:Posterior Inferences for Parameters in Forecasting Model, House Elections 1980 - 2008}. All of the variables (except the August generic ballot) are precisely estimated and have 95\% credibility intervals that do not include zero. The posterior densities for all parameters are all approximately normally distributed,  which is consistent with the central limit theorem in a Bayesian context (see~\autoref{fig:Posterior Densities for Parameters in Forecasting Model}).\footnote{The distribution on the national error is somewhat of an exception because it is somewhat right-skewed. This likely occurs because the number of national elections is small and the error terms are truncated at zero.}
 
 The signs of the variables are generally as expected. For example, the president's party does worse in midterm years, challengers with previous political experience receive more votes and voters tend to prefer representatives with less extreme DW-nominate scores. The sign on the freshman incumbent variable may be somewhat of a surprise though, as less experienced incumbents are actually predicted to do better than their more experienced counterparts. Finally, the estimated incumbency effect is consistent with previous research, although it is a little closer to typical estimates of the incumbency effect in recent years (of around $10\%$) than the more involved method used by \citet{gelman2008estimating} (which found the incumbency effect to be closer to $8\%$).\footnote{\citet{gelman2008estimating} estimate candidate level incumbency effects using a multilevel model. They also include a model for the party of the incumbent which depends on the district vote lagged two periods.}
 
-Although parameters have only been reported for the model using data from the 1980 to 2008 elections, the model was actually fit 5 separate times in order to imitate 5 separate real-time forecasts using data that would have been available to a political analyst in August \emph{prior} to each election. Each model has its own unique posterior distribution for the parameters. In practice, the district parameters do not vary much from one election to the next but that national parameters (which are estimated using much less data) become more precise over time. 
+Although parameters have only been reported for the model using data from the 1980 to 2008 elections, the model was actually fit 5 separate times in order to imitate 5 separate real-time forecasts using data that would have been available to a political analyst in August \emph{prior} to each election. Each model has its own unique posterior distribution for the parameters. In practice, the district parameters do not vary much from one election to the next but the national parameters (which are estimated using much less data) become more precise over time. 
 
-\subsection{Bayesian DLM}
-\subsubsection{Posterior distribution of variance terms}
+As shown in the main text, forecasts were accurate in each non-redistricting election from 2000 to 2010. The predicted versus actual plot (\autoref{fig:predicted_vs_actual}), provides further evidence that this is the case as the predicted vote shares match actual vote shares very closely. 
+
+\subsection{Bayesian DLM}\label{sec:forecast_dlm}
 Estimates of the square root of the variance parameters, $\sigma_\mu$ and $\sigma_\xi$ are shown in~\autoref{table:post-dlm-var}. The table reports estimates listed by the date the model was estimated. The posterior quantiles for $\sigma_\mu$ are consistent across dates and yield $95\%$ credible intervals ranging from around $0.015$ to  $0.023$ with a median of $0.018$. Posterior estimates of $\sigma_\xi$ are more variable but are generally pretty stable; the estimates do however increase slightly as election day nears.
 
-\subsubsection{DLM Forecast Evaluation}\label{sec:dlm-forecast-eval}
-I evaluated the performance of the DLM using two commonly used summary measures. The first summary measure is the standard root mean square forecast error (RMSFE) described in the main body of the text. Here the standard DLM (with a prior) does considerably better than DLM with no prior. Both however have considerably lower RMSFE's than the regression based forecast from the hierarchical model. Strangely, the RMSFE's do not decrease during the campaign.
+Estimates of national opinion and house effects are shown in \autoref{fig:nat_opinion} and \autoref{fig:house_effects} respectively. The national vote trended more Republican over time and the most prolific pollsters (Rasmussen Reports and Gallup) leaned Republican.  
+
+The performance of the DLM was evaluated using two commonly used summary measures (\autoref{fig:eval_2010_forecast}). The first summary measure is the standard root mean square forecast error (RMSFE) described in the main body of the text. Here the standard DLM (with a prior) does considerably better than DLM with no prior. Both however have considerably lower RMSFE's than the regression based forecast from the hierarchical model. Strangely, the RMSFE's do not decrease during the campaign.
 
 The second summary measure is the Brier score, which is often used to evaluate the accuracy of binary probabilistic forecasts. For this paper, the Brier score at time $t$ can be written as $BS_t = \frac{1}{408} \sum_{i=1}^{408}(f_{it} - a_{iT})^2$, where $408$ is the number of contested House seats; $f_{it}$ is the forecasted probability that the Democratic candidate would win district $i$ at time $t$, and $a_T$ is a binary variable equal to $1$ if the Democratic candidate won the actual seat and $0$ if the Republican candidate won. Higher Brier scores indicate worse forecasting performance. As shown in the figure, the Brier scores for both DLM's decline in a linear fashion over time and are considerably smaller than the Brier score of the hierarchical model. In contrast to the RMSFE, the Brier sore suggests that the DLM without a prior is a better predictor than the DLM with a prior. 
 
-The results suggest that forecasts with the DLM's are more accurate than forecast with the hierarchical model alone, but it is somewhat disconcerting that the RMSFEs increase as the election day gets closer. \autoref{fig:RMSFE By Polling Availability and Forecast Date} in the appendix shows that this is being caused by districts with no polling data: the RMSFEs decrease (increase) over time in districts with (without) at least one poll. The poor performance of the RMSFEs in districts without polls is an artifact of the downward trend in the forecast of the national Democratic vote (see~\autoref{fig:Forecasts of the 2010 National Vote by Date}). This is illustrated in appendix~\autoref{fig:MPE By Polling Availability and Forecast Date}, which plots the mean prediction error (MPE)---defined as $E[f_{it}-v_{iT}]$ where $v_{iT}$ is the observed vote on election day---by forecast date. The plot shows that forecasts become increasingly biased toward Republicans and that the bias is only severe in districts without polls (since the poll based forecasts in districts without polls are driven entirely by the biased national polls). The bias increases the overall RMSFE but not the overall Brier score because the Brier score is more sensitive to changes in forecasts of close elections (which are the most likely to have polling data) than lopsided ones while the RMSFE is equally sensitive to changes in both.
+The results suggest that forecasts with the DLM's are more accurate than forecast with the hierarchical model alone, but it is somewhat disconcerting that the RMSFEs increase as the election day gets closer. \autoref{fig:RMSFE By Polling Availability and Forecast Date} in the appendix shows that this is being caused by districts with no polling data: the RMSFEs decrease (increase) over time in districts with (without) at least one poll. The poor performance of the RMSFEs in districts without polls is an artifact of the downward trend in the forecast of the national Democratic vote (see~\autoref*{fig:Forecasts of the 2010 National Vote by Date} in the main text). This is illustrated in appendix~\autoref{fig:MPE By Polling Availability and Forecast Date}, which plots the mean prediction error (MPE)---defined as $E[f_{it}-v_{iT}]$ where $v_{iT}$ is the observed vote on election day---by forecast date. The plot shows that forecasts become increasingly biased toward Republicans and that the bias is only severe in districts without polls (since the poll based forecasts in districts without polls are driven entirely by the biased national polls). The bias increases the overall RMSFE but not the overall Brier score because the Brier score is more sensitive to changes in forecasts of close elections (which are the most likely to have polling data) than lopsided ones while the RMSFE is equally sensitive to changes in both.
 
-\section{Relationship Between $\mathbf{Q_i}$ and District Spending}
-\subsection{Alternative Measure of Electoral Competitiveness}
-The finding that campaign contributions are higher in close elections is a common result in the political science and economics literatures. As mentioned in the main text, one drawback of these studies is that they use the ex-post electoral margin as a measure of the closeness of the election and assume a linear relationship between this margin and spending.\footnote{Some studies used the electoral margin from the previous election as a measure of closeness.} Do the values of $Q_i$ calculated using Stromberg's probabilistic voting model fit the data better?
+\section{Relationship Between $\mathbf{Q_i}$ and District Spending}\label{sec:qi_spending}
+The finding that campaign contributions are higher in close elections is a common result in the political science and economics literature's. As mentioned in the main text, one drawback of these studies is that they use the ex-post electoral margin as a measure of the closeness of the election and assume a linear relationship between this margin and spending.\footnote{Some studies used the electoral margin from the previous election as a measure of closeness.} Do the values of $Q_i$ calculated using Stromberg's probabilistic voting model fit the data better?
 
-\autoref{fig:Correlation Between Measures of Electoral Competitiveness and Campaign Spending} takes a look at this question by plotting the correlation between various measure of electoral competitiveness. Based on~\autoref{fig:Correlation Between Q and Spending, by Contributor Type} in the main text, I use $Q_i^{seats}$ as the measure of electoral competitiveness derived from the probabilistic voting model. The electoral margin is measured as the absolute value of the Democratic vote share less 0.5.\footnote{Uncontested seats are treated as having an electoral margin equal to $0.5$ to maintain consistency with the probabilistic voting model.} $Q_i^{seats}$ fits the data considerably better than the electoral margin for all five elections in the sample. There is also little difference between calculating electoral margin with the actual election outcome or a forecasted value, implying that $Q_i^{seats}$ accounts for observed spending better because it depends on forecast uncertainty and that the normality assumptions on the error terms are reasonable. 
+\autoref{fig:Correlation Between Measures of Electoral Competitiveness and Campaign Spending} takes a look at this question by plotting the correlation between various measure of electoral competitiveness. Based on~\autoref*{fig:Correlation Between Q and Spending, by Contributor Type} in the main text, I use $Q_i^{seats}$ as the measure of electoral competitiveness derived from the probabilistic voting model. The electoral margin is measured as the absolute value of the Democratic vote share less 0.5.\footnote{Uncontested seats are treated as having an electoral margin equal to $0.5$ to maintain consistency with the probabilistic voting model.} $Q_i^{seats}$ fits the data considerably better than the electoral margin for all five elections in the sample. There is also little difference between calculating electoral margin with the actual election outcome or a forecasted value, implying that $Q_i^{seats}$ accounts for observed spending better because it depends on forecast uncertainty and that the normality assumptions on the error terms are reasonable. 
 
 \section{Supplemental Tables}
 \begin{table}[!ht]
@@ -377,7 +378,7 @@ Notes: \emph{Relative Dem. share of presidential vote in last election} is the d
 \hline
 \end{tabular*}
 \scriptsize
-Notes: 2002 is omitted because it is a redistricting year. Spending consists of direct contributions, coordinated expenditures and independent expenditures for a canditate or against the opposing candidate in 2010 dollars. Spending figures are per district means averaged across the 2000 to 2010 non-redistricting year elections. Expenditures prior to September 1st are excluded. National party committees include the DNC, DCCC, RNC and RCCC. Party-connected committee are candidate committees or leadership PACs. Allied PAC consist of PACs that have spent 90\% or more of their funds on one political party. Other PACs are all other PACs that do not fit into the other three categories.
+Notes: 2002 is omitted because it is a redistricting year. Spending consists of direct contributions, coordinated expenditures and independent expenditures for a candidate or against the opposing candidate in 2010 dollars. Spending figures are per district means averaged across the 2000 to 2010 non-redistricting year elections. Expenditures prior to September 1st are excluded. National party committees include the DNC, DCCC, RNC and RCCC. Party-connected committee are candidate committees or leadership PACs. Allied PAC consist of PACs that have spent 90\% or more of their funds on one political party. Other PACs are all other PACs that do not fit into the other three categories.
 \end{threeparttable}
 \end{center}
 \end{table}
@@ -447,10 +448,9 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \label{fig:Average Daily Expenditures by PACs on Candidates by Month, 2000 - 2010}
 \begin{minipage}{\linewidth}
 \footnotesize
-\emph{Notes:} Expenditures are the average (across elections from 2000 to 2010) of the sum of expenditures on candidates by all PACS by month. Expenditures in non-election years are not included. Spending is in millions of 2010 dollars. November spending only include expenditures prior to election day. 
+\emph{Notes:} Expenditures are the average (across elections from 2000 to 2010) of the sum of expenditures on candidates by all PACs by month. Expenditures in non-election years are not included. Spending is in millions of 2010 dollars. November spending only include expenditures prior to election day. 
 \end{minipage}
 \end{figure}
-
 
 \begin{landscape}
 \begin{figure}[!ht]
@@ -460,7 +460,7 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \label{fig:Posterior Densities for Parameters in Forecasting Model}
 \begin{minipage}{\linewidth}
 \footnotesize
-\emph{Notes:} Variables are the same as in~\autoref{table:Summary Statistics} but names have been shortened for graphical purposes. 
+\emph{Notes:} Variables are the same as in~\autoref{table:sumstats_forecast} but names have been shortened for graphical purposes. 
 \end{minipage}
 \end{figure}
 \end{landscape}
@@ -482,7 +482,7 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \includegraphics{../figs/pvaoos.pdf}
 \vspace{.5cm}
 \caption{Out-of-Sample Predicted Versus Actual Plot, House Elections 1990 - 2010}
-\label{fig:Out-of-Sample Predicted Versus Actual Plot, House Elections 1990 - 2010}
+\label{fig:predicted_vs_actual}
 \begin{minipage}{\linewidth}
 \footnotesize
 \emph{Notes:} Predicted value is the mean of the out-of-sample posterior predictive distribution. Model parameters are estimated using data from 1980 up until the year the prediction is being made (i.e. 1980 - 2008 when predicting the 2010 election). The blue line is a 45 degree line. 
@@ -494,7 +494,7 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \includegraphics{../figs/natopinion1.pdf}
 \vspace{.5cm}
 \caption{Estimates of National Opinion During the Election Campaign}
-\label{fig:Estimates of National Opinion During the Election Campaign}
+\label{fig:nat_opinion}
 \begin{minipage}{\linewidth}
 \footnotesize
 \emph{Notes:} Estimates are the mean of the posterior distribution of the states at each date from a DLM using 2010 generic ballot polling data up until election day.
@@ -506,12 +506,24 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \includegraphics{../figs/houeffects.pdf}
 \vspace{.5cm}
 \caption{Estimates of House Effects}
-\label{fig:house-effects}
+\label{fig:house_effects}
 \begin{minipage}{\linewidth}
 \footnotesize
 \emph{Notes:} House effects are estimated using the DLM with 2010 generic ballot polling data up until election day. The bias across pollsters is assumed to sum to zero for identification purposes. The reported biases are from the late-October model just prior to election day.
 \end{minipage}
 \end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics{../figs/forecast_eval_2010.pdf}
+\vspace{.5cm}
+\caption{Evaluations of 2010 Election Forecasts}
+\label{fig:eval_2010_forecast}
+\begin{minipage}{\linewidth}
+\footnotesize
+\emph{Notes:} Figures (a) and (b) plot the root mean square forecast errors and brier scores respectively for the different forecast models by forecast date. 
+\end{minipage}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -540,18 +552,7 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \end{center}
 \end{figure}
 
-\begin{figure}[!htb]
-\centering
-\includegraphics{../figs/forecast_eval_2010.pdf}
-\vspace{.5cm}
-\caption{Evaluations of 2010 Election Forecasts}
-\label{fig:Evaluations of 2010 Election Forecasts}
-\begin{minipage}{\linewidth}
-\footnotesize
-\emph{Notes:} Figures (a) and (b) plot the root mean square forecast errors and brier scores respectively for the different forecast models by forecast date. 
-\end{minipage}
-\end{figure}
-
+\iffalse
 \begin{figure}[!htb]
 \begin{center}
 \includegraphics{../figs/brier2010_bypollfreq.pdf}
@@ -564,6 +565,7 @@ Notes: 2002 is omitted because it is a redistricting year. Spending consists of 
 \end{minipage}
 \end{center}
 \end{figure}
+\fi
 
 \begin{figure}[!htb]
 \includegraphics{../figs/corbyparty.pdf}

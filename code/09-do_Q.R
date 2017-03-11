@@ -61,6 +61,7 @@ probDecisiveSwing <- function(t, sims){
   decisive <- merge(decisive.swing, cd[year==t, .(stcd, Q_maxseats, Q_k218)], by = c("stcd"))
   print(cor(decisive$swing, decisive$Q_k218))
   print(cor(decisive$swing, decisive$Q_maxseats)) 
+  return(decisive)
 }
 #probDecisiveSwing(2008, 1000000)
 
@@ -73,7 +74,7 @@ q.data <- cd[year == 2008, .(forecast, Q_maxseats, Q_k218, stcd)]
 q.data <- melt(q.data, id = c("stcd", "forecast"))
 q.data[, variable :=  revalue(variable, c("Q_maxseats" = "Maximizing seats", 
                                           "Q_k218" = "Maximizing probability of majority"))]
-p.q <- ggplot(q.data, aes(x = forecast, y = value)) + geom_point() + 
+p.q <- ggplot(q.data, aes(x = forecast, y = value)) + geom_point(size = .8) + 
   facet_wrap(~variable, scales = "free_y") + 
   xlab("Forecasted Democratic vote share") + ylab("Q")
 ggsave("figs/qplot.pdf", p.q, height = 5, width = 6.5)
