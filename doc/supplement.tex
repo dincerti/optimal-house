@@ -139,7 +139,7 @@
   {\itshape\large}{\thesubsection}{1em}{}
 
 \begin{document}
-\author{Devin Incerti}
+%\author{Devin Incerti}
 \title{\textbf{Supplemental Online Appendix}}
 \date{\today}
 \maketitle
@@ -151,6 +151,47 @@
 \clearpage
 \doublespacing
 
+\section{Derivation of $Q_i^{maj}$ in Campaign Spending Model} \label{sec:appendix-campaign-spending-model}
+The derivation of $Q_i^{maj}$ proceeds in three steps by deriving (i) the mean and variance of the number of seats won by party $R$, (ii), the probability that party $R$ wins a majority of seats, and (iii) equilibrium spending given that both parties maximize the probability of winning a majority of seats.
+
+\subsection{Distribution of seats won by party $R$}
+Let $s_i$ be an indicator variable equal to 1 if party $R$ wins a district and $0$ if party $D$ wins so that $s_i = 1$ with probability $G_i(\cdot)$ and $s_i = 0$ with probability $1 - G_i(\cdot)$. The total number of seats won by party $R$ is $S = \sum_{i=1}^{435} s_i$. Since the $G_i(\cdot)$ are independently (but not identically) distributed conditional on $\delta$, $S$ follows a Poisson binomial distribution with mean
+\begin{align} \label{eqn: conditional seat mean}
+\mu_S = \mu_S(\Delta u, \delta) =  \sum_{i=1}^{435} G_i(\cdot),
+\end{align}
+and variance,
+\begin{align} \label{eqn: conditional seat variance}
+\sigma_S = \sigma_S(\Delta u, \delta) = \sum_{i=1}^{435} G_i(\cdot)(1 - G_i(\cdot)),
+\end{align}
+where $\Delta \mu = \left(\Delta \mu_1, \Delta \mu_2, \ldots, \Delta \mu_{435} \right)$ represents the utility differences resulting from any allocation of campaign resources across districts by the two parties.
+
+\subsection{Probability party $R$ wins a majority of seats}
+This probability is not trivial to derive because party $R$'s optimal strategy in one district depends on its strategy in all other districts. In order to solve the problem analytically, \citet{stromberg2008electoral} suggests calculating the approximate probability of winning. Since the national and district shocks are independent, this can be done by using the Lyapunov Central Limit Theorem, which does not require random variables to be identically distributed. Using this approximation, the number of seats won by party $R$, $S=\sum_{i=1}^{435} s_i$, is asymptotically normally distributed with mean $\mu_S$ and variance $\sigma_S$. The approximate probability of party $R$ winning the election is then,
+\begin{align}
+P^R(\Delta \mu) = \int 1 - \Phi\left(\frac{218 - \mu_S(\Delta u, \delta)}{\sigma_S(\Delta u, \delta)}\right) h(\delta)d\delta,
+\end{align}
+where $\Phi(\cdot)$ is the standard normal cumulative density function.
+
+\subsection{Equilibrium spending}
+Let $e^j = (e_1^j, e_2^j, \ldots, e_{435}^j)$ be the allocation of campaign spending across districts by party $j$ and $f^R(e^D, e^R)$ be the objective function used by party $R$. A Nash equilibrium in pure strategies $(e^{D*}, e^{R*})$ is then characterized by,
+\begin{align}
+f^R(e^D, e^{R*}) \geq f^R(e^{D*}, e^{R*}) \geq f^R(e^{D*}, e^{R}),
+\end{align}
+where $e^D$ and $e^R$ satisfy the budget constraint in~\autoref{eqn: budget constraint} in the main text. The game has a unique interior NE which satisfies,
+\begin{align}
+\frac{\partial f^J}{\partial e_i^J}= Q_i u'(e^{J*}_i)=\lambda^J,
+\end{align}
+where $Q_i = \partial f^J/ \partial \Delta u_i$ and $\lambda^J$ is the Lagrange multiplier for party $j$.\footnote{For a proof of uniqueness see \citet{stromberg2008electoral}.} 
+
+When parties maximize the probability of winning a majority of seats, $Q_i$ is given by, 
+\begin{align} \label{eqn: Q_i probability of winning}
+Q_i  = Q_i^{maj} &= - \int \left(\frac{\partial \Phi(\cdot)}{\partial \mu_S}\frac{\partial \mu_S}{\partial \Delta u_i}+\frac{\partial \Phi(\cdot)}{\partial \sigma_S}\frac{\partial \sigma_S}{\partial \Delta u_i}\right)h(\delta)d\delta  \\
+& = \int \frac{1}{\sigma_S}\phi(x(\delta))g_i(\cdot)h(\delta)d\delta \nonumber \\
+ &\qquad + \int \frac{1}{\sigma_S}\phi(x(\delta))x(\delta)\left(1-2G_i(\cdot)\right) g_i(\cdot)h(\delta)d\delta,
+\end{align}
+where $x(\delta) = \left(218 - \mu_S\right)/\sigma_S$ and $\phi(\cdot)$ is the standard normal probability density function. 
+
+
 \section{Data}
 The main text requires data for three separate analyses. First, forecasting variables are needed for the Bayesian hierarchical model. Second, both district and national polls are used for the Bayesian DLM. Third, campaign data is used to examine whether political parties donate in a manner consistent with the theoretical model. More information about these variables are provided in sections~\ref{sec:forecast-vars}-\ref{sec:campaign-spending}. \autoref{sec:data sources} provides information on the sources used to collect the data.
 
@@ -159,9 +200,9 @@ The regression forecast includes variables (and error terms) at the national and
 
 The primary dependent variable is the Democratic share of the two-party vote. This is not the only possible choice for the response variable but it is frequently used in the literature. Other choice that are essentially identical include the incumbent party's share of the vote or the margin of victory for the incumbent candidate.
 
-House elections are highly persistent from one election to the next so they can be predicted quite accurately using only the lag of the two-party vote. The lag is unavailable without substantial re-aggregation in redistricting years so, as is common in the literature, the analysis excludes years ending in 2.\footnote{Examples of other studies that deal with redistricting years in this manner include \citet{gelman1990estimating}, \citet{kastellec2008predicting}, and \citet{gelman2008estimating}.} The lagged vote is tied in many respects to individual candidates and is not surprisingly a much stronger predictor of the vote when incumbents are running for re-election than in open-seats \citep{gelman2008estimating}. The model consequently includes the lag of the presidential vote in each district in addition to the lag of the House vote. The presidential vote is subtracted from the nationwide presidential vote to control for national trends and can be interpreted as a measure of the degree to which a district leans toward one party or another.\footnote{This variable is very similar to the Cook Partisan Voting Index (Cook PVI), which compares the two-party vote in the past two presidential elections to the nation's average share of the same presidential vote. The main difference is that I only include the previous presidential election because of redistricting.}\footnote{Models that interacted both the lagged vote and the centered presidential vote with whether incumbents were running were also considered, but did not improve the fit of the model.}
+House elections are highly persistent from one election to the next so they can be predicted quite accurately using only the lag of the two-party vote. The lag is unavailable without substantial re-aggregation in redistricting years so, as is common in the literature, the analysis excludes years ending in 2.\footnote{Examples of other studies that deal with redistricting years in this manner include \citet{gelman1990estimating}, \citet{gelman2008estimating}, and \citet{kastellec2008predicting}.} The lagged vote is tied in many respects to individual candidates and is not surprisingly a much stronger predictor of the vote when incumbents are running for re-election than in open-seats \citep{gelman2008estimating}. The model consequently includes the lag of the presidential vote in each district in addition to the lag of the House vote. The presidential vote is subtracted from the nationwide presidential vote to control for national trends and can be interpreted as a measure of the degree to which a district leans toward one party or another.\footnote{This variable is very similar to the Cook Partisan Voting Index (Cook PVI), which compares the two-party vote in the past two presidential elections to the nation's average share of the same presidential vote. The main difference is that I only include the previous presidential election because of redistricting.}\footnote{Models that interacted both the lagged vote and the centered presidential vote with whether incumbents were running were also considered, but did not improve the fit of the model.}
 
-One of the largest and most consistent findings in the political science literature on American elections is that, all else equal, incumbent candidates receive more votes than challengers \citep{{gelman1990estimating, lee2001electoral, ansolabehere2002incumbency, gelman2008estimating}}. To model this incumbency effect, I use the variable, \emph{Incumbent}, which is equal to $1$ if the incumbent is a Democrat, $-1$ if the incumbent is a Republican and $0$ if there is no incumbent running. $+1, 0, -1$ variables are used repeatedly in the analysis and are always equal to +1 for Democrats and -1 for Republicans; they should be thought of as dummy variables that are constrained to have the same impact on the vote for both Democratic and Republican candidates (recall that the dependent variable is the Democratic candidate's share of the two-party vote).
+One of the largest and most consistent findings in the political science literature on American elections is that, all else equal, incumbent candidates receive more votes than challengers \citep{ansolabehere2002incumbency, gelman1990estimating, gelman2008estimating, lee2001electoral}. To model this incumbency effect, I use the variable, \emph{Incumbent}, which is equal to $1$ if the incumbent is a Democrat, $-1$ if the incumbent is a Republican and $0$ if there is no incumbent running. $+1, 0, -1$ variables are used repeatedly in the analysis and are always equal to +1 for Democrats and -1 for Republicans; they should be thought of as dummy variables that are constrained to have the same impact on the vote for both Democratic and Republican candidates (recall that the dependent variable is the Democratic candidate's share of the two-party vote).
 
 Since more experienced candidates tend to do better at the polls, I include two $+1, 0, -1$ experience variables: \emph{Freshman incumbent} and \emph{Previous office holder}. \emph{Freshman incumbent} is equal to +1(-1) if a Democratic (Republican) incumbent was elected for the first time in the previous election and 0 otherwise. \emph{Previous office holder} is equal to +1 or -1 if a Democrat or Republican challenger had previously held office and was running against either an incumbent or a challenger without previous experience; it is equal to 0 in all other situations including open seats in which both candidates had previous political experience.
 
@@ -218,8 +259,19 @@ Data on campaign spending are from the campaign finance data provided by the Cen
 \subsubsection{House Polls}
 The district polls are all of those used by the New York times to forecast the 2010 House election and  were scraped from \url{http://elections.nytimes.com/2010/forecasts/house}. National polls were scraped from the website \url{http://www.realclearpolitics.com/} and include all polls listed for the generic congressional vote. Each poll contains the date that the poll was taken, its sample size, and the proportion of respondents favoring the Democrat and Republican candidate. 
 
-\section{Gibbs Sampler for the DLM} \label{sec:gibbs}
-\subsection{DLM Form} \label{sec: DLM Form}
+\section{Dynamic Linear Model} \label{sec:dlm}
+\subsection{Posterior distribution} \label{sec:dlm-posterior-distribution}
+The Kalman filter is used to estimate the posterior distribution of forecasts of both the national vote and the relative district vote. For example, the mean and variance of the latent state in district $i$ on day $t$ given polls up to day $t$, $Y_{1:t}$ are,
+\begin{align}
+m_{it} &= E(\xi_{it}|Y_{1:t})= \left[\frac{m_{i,t-1}}{C_{i,t-1} + \sigma_\xi^2} + \sum_{l \in \mathcal{P}_{it}} \frac{d_{l}}{\sigma^2_l}\right]\cdot C_{it},\\
+C_{it} &= \var(\xi_{it}|Y_{1:t})= \left[\frac{1}{C_{i,t-1} + \sigma_\xi^2}+ \sum_{l \in \mathcal{P}_{it}}\frac{1}{\sigma^2_{l}}\right]^{-1},
+\end{align}
+where $\mathcal{P}_{it}$ refers to the set of all polls published for district $i$ on day $t$.\footnote{There is almost never more than one poll for a given district and time period of a reasonably short duration (such as two weeks). For national elections, there are almost always multiple polling firms surveying on a given day or time period.}
+The mean of $\xi_{it}$ is thus a weighted average of its mean on the previous day, $m_{i,t-1}$ and the deviation of all new polls from national opinion, $\sum_{l \in \mathcal{P}_{it}} d_{l}$, with weights proportional to their respective precisions. The precision of each poll is equal to the inverse of its sampling error and the precision of $m_{t-1}$ is the inverse of the sum of its variance and error in the movement of the states from one period to the next. The variance of $\xi_{it}$ is the inverse of the poll precision plus the prior ($m_{t-1})$ precision. The interpretation for $\mu_t$ is identical except that new estimates are a weighted average of prior states and new polls less the democratic bias of the polling firm (i.e. $y_{k} - \delta_{j[k]}$).
+
+The relative weights received by the regression forecasts and the polls depend largely on the number of days until the election. For instance, due to the random walk assumption, the precision of $\mu_{T-1}$ for a forecast of the national vote made on day $t'$ is equal to $1/\left[C_{i,t'} + (T-t')\cdot \sigma^2_\mu\right]$, which is linearly decreasing in time and in the day to day movements of the states. It follows that the regressions receives more weight when the election day is far away and when there is more movement in the polls.  
+
+\subsection{DLM Form} \label{sec:dlm-form}
 \subsubsection{National Model} 
 Let $K_t$ be the numbers of polls published on day $t$ and $J$ be the number of polling firms. Then, equations~\ref*{observation eqn national} and \ref*{system eqn national} from the main text can be written in the form,
 \begin{align}
@@ -240,7 +292,7 @@ Let $m$ be the number of districts with polling data and $L_t$ be the numbers of
 \end{align}
 where $Y_t$ is a column vector of all district polls less national opinion at time $t$, $F_t$ is a matrix of binary indicators equal to 1 if poll $l$ is from district $m$, $G= I_m$, $\theta_t = [\xi_{1t}\; \xi_{2t}\cdots \xi_{mt}]^T$, $V_t$ is an $L_t \times L_t$ diagonal matrix with $\sigma^2_l$ along the diagonal and $W = \sigma^2_\xi$.
 
-\subsection{Gibbs Sampler}
+\subsection{Gibbs Sampler}\label{sec:dlm-gibbs}
 \subsubsection{National Model}
 Using the DLM form, the joint posterior density of the states and variance parameters is,
 \begin{align}
@@ -323,6 +375,12 @@ Although parameters have only been reported for the model using data from the 19
 As shown in the main text, forecasts were accurate in each non-redistricting election from 2000 to 2010. The predicted versus actual plot (\autoref{fig:predicted_vs_actual}), provides further evidence that this is the case as the predicted vote shares match actual vote shares very closely. 
 
 \subsection{Bayesian DLM}\label{sec:forecast_dlm}
+To remain relatively agnostic about biases, I set the prior variance for the House effects $\sigma^2_\lambda$, equal to $0.05^2$. This allows for very biased polling firms because plus or minus 2 standard deviations from $0$ is plus or minus 10 percentage points. In addition, the inverse gamma priors for the unknown variance parameters, $\sigma_\mu^2$ and $\sigma_\xi^2$, were assigned shape parameters equal to $9$ and scale parameters equal to $0.02$, corresponding to a mean of $0.05^2$. The prior implies that period to period movements should be around 5 percentage points, but its effect is in practice dwarfed by the data.
+
+Election day polls were added to both the national and district models. The final poll in the national model is given a mean and standard deviation of $\finpollnatmean$ and  $\finpollnatsd$ respectively, which are the mean and standard deviation of the posterior predictive distribution of the average district vote from the hierarchical model.\footnote{Uncontested seats are assumed to be known with certainty. Uncontested Democratic (Republican) seats are given a vote share of 0.75 (0.25). These values are based on those reported in \citet{king1991systemic} and \citet{gelman1994unified} and derived from vote shares received by districts in the last year before they became uncontested and the first election after they became uncontested. For another paper that uses this strategy see \citet{kastellec2008predicting}.} Similarly, the mean and standard deviation of the election day poll for the district model are the mean and standard deviation of the posterior predictive distribution of the difference between the vote in each district and the average district vote. For reference, the mean of this standard deviation is $\finpollsd$, with is nearly identical to the mean of the district level error, $\sigma$.
+
+When a district (in the district model) or polling firm (in the national model) has multiple polls during a period I take an average of the polls weighted by sample size. This average poll is then given a sample size equal to the sum of the sample sizes of the individual polls. Aggregating the polls in this manner does not have a substantial impact on the forecasts for a number of reasons. Firstly, academic research typically shows that frequent polling provides very little information \citep[e.g.,][]{gelman1993american, lock2010bayesian}. This is likely to be especially true in a window as short as two weeks. Secondly, there are very few cases in which a particular district was polled more than once in any two week span. 
+
 Estimates of the square root of the variance parameters, $\sigma_\mu$ and $\sigma_\xi$ are shown in~\autoref{table:post-dlm-var}. The table reports estimates listed by the date the model was estimated. The posterior quantiles for $\sigma_\mu$ are consistent across dates and yield $95\%$ credible intervals ranging from around $0.015$ to  $0.023$ with a median of $0.018$. Posterior estimates of $\sigma_\xi$ are more variable but are generally pretty stable; the estimates do however increase slightly as election day nears.
 
 Estimates of national opinion and house effects are shown in \autoref{fig:nat_opinion} and \autoref{fig:house_effects} respectively. The national vote trended more Republican over time and the most prolific pollsters (Rasmussen Reports and Gallup) leaned Republican.  
